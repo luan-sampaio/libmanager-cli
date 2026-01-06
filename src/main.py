@@ -2,8 +2,8 @@ import os
 
 def main():
     start_screen()
-    get_input = input()
-    insert_book_screen()
+    options = get_input()
+#    insert_book_screen()
 
 
 def start_screen():
@@ -22,6 +22,29 @@ def start_screen():
     print("    =====================================")
     print("    Digite sua opção abaixo: ")
     print("    > _", end="")
+
+
+def get_input():
+    while True:
+        choice = input()
+        match choice:
+            case "1" | "2" | "3" | "4" | "5":
+                return choice
+            case _:
+                handle_invalid_option_in_menu()
+                input("     >_")
+                start_screen()
+                continue
+
+
+def handle_invalid_option_in_menu():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("    =============== ERRO ================")
+    print()
+    print("               Opção inválida!")
+    print()
+    print("         Pressione [ENTER] para retornar")
+    print("    =====================================")
 
 
 def insert_book_screen():
