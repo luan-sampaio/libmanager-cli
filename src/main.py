@@ -2,8 +2,20 @@ import os
 
 def main():
     start_screen()
-    options = get_input()
-#    insert_book_screen()
+
+    while True:
+        options = get_input()
+        match options:
+            case "1":
+                insert_book_screen()
+            case "2":
+                print("Em manutenção!")
+            case "3":
+                print("Em manutenção!")
+            case "4":
+                print("Em manutenção!")
+            case "5":
+                break
 
 
 def start_screen():
