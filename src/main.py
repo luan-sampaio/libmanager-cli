@@ -1,13 +1,18 @@
 import os
 
+
 def main():
-    start_screen()
+    list_of_books = []
+    book_id = 0
 
     while True:
+        start_screen()
         options = get_input()
         match options:
             case "1":
                 insert_book_screen()
+                if add_book(list_of_books):
+                    book_id += 1
             case "2":
                 print("Em manutenção!")
             case "3":
@@ -66,6 +71,22 @@ def insert_book_screen():
     print("             Preencha os dados abaixo.")
     print()
     print("    =====================================")
+
+
+def add_book(books): 
+    print("     (Pressione [ENTER] para retornar)")
+
+    title = input("     Insira o título do livro           : ",)
+    if title == "":
+        return False
+
+    author = input("     Insira o nome do autor             : ")    
+    date = input("     Insira o ano de lançamento do livro: ")
+
+    book = {"title": title, "author": author, "date": date}
+    books.append(book)
+    # Adicionar mensagem após o livro ter sido adicionado
+    return True
 
 
 main()
