@@ -12,6 +12,7 @@ def main():
             case "1":
                 insert_book_screen()
                 if add_book(list_of_books):
+                    display_sucess_message(book_id, list_of_books)
                     book_id += 1
             case "2":
                 print("Em manutenção!")
@@ -68,25 +69,43 @@ def insert_book_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
     print("    ============= CADASTRO =============")
     print()
-    print("             Preencha os dados abaixo.")
+    print("            Preencha os dados abaixo.")
     print()
-    print("    =====================================")
+    print("     -------------------------------------")
 
 
 def add_book(books): 
     print("     (Pressione [ENTER] para retornar)")
 
-    title = input("     Insira o título do livro           : ",)
+    title = input("     Insira o título do livro: ",)
     if title == "":
         return False
 
-    author = input("     Insira o nome do autor             : ")    
+    author = input("     Insira o nome do autor: ")    
     date = input("     Insira o ano de lançamento do livro: ")
+
 
     book = {"title": title, "author": author, "date": date}
     books.append(book)
-    # Adicionar mensagem após o livro ter sido adicionado
+
     return True
+
+
+def display_sucess_message(id, list_of_books):
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("    ============= CADASTRO =============")
+    print()
+    print()
+    print("                id - título")
+    print(f"                {id}  - {list_of_books[id]["title"]}   ")
+    print()
+    print()
+    print("         Livro Cadastrado com sucesso!")
+    print()
+    print()
+    print("    Pressione [ENTER] para retornar ao menu.")
+    print("    =====================================")
+    input()
 
 
 main()
