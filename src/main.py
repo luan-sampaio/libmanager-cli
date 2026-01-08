@@ -21,7 +21,7 @@ def main():
             case "4":
                 view_books(list_of_books)
             case "5":
-                # TODO: Mensagem de saída
+                exit_message()
                 break
 
 
@@ -118,4 +118,12 @@ def view_books(list_of_books):
     print(" " * 4 + "=" * 40)
     input()
     
+
+def exit_message():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(" " * 4 + "=" * 40 + "\n\n")
+    print(" " * 4 + "Obrigado por usar o sistema!\n\n")
+    print(" " * 4 + "=" * 40)
+
+
 main()
