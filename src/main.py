@@ -19,7 +19,8 @@ def main():
             case "3":
                 print("Em manutenção!")
             case "4":
-                print("Em manutenção!")
+                print("Q")
+                #view_books(book_id, list_of_books)
             case "5":
                 break
 
@@ -96,7 +97,8 @@ def display_sucess_message(id, list_of_books):
     print("    ============= CADASTRO =============")
     print()
     print()
-    print("                id - título")
+    print("                ID - TÍTULO")
+    print("    ------------------------------------")
     print(f"                {id}  - {list_of_books[id]["title"]}   ")
     print()
     print()
@@ -107,5 +109,8 @@ def display_sucess_message(id, list_of_books):
     print("    =====================================")
     input()
 
+
+#def view_books(id, list_of_books):
+    
 
 main()
