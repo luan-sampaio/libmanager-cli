@@ -1,6 +1,5 @@
 import os
 
-# TODO: Criar um sistema de espaçamento e mensagens padrões para todas as telas
 
 def main():
     list_of_books = []
@@ -16,9 +15,9 @@ def main():
                     display_sucess_message(book_id, list_of_books)
                     book_id += 1
             case "2":
-                print("Em manutenção!")
+                continue
             case "3":
-                print("Em manutenção!")
+                continue
             case "4":
                 view_books(list_of_books)
             case "5":
@@ -28,20 +27,17 @@ def main():
 
 def start_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
-    print("               LIBMANAGER v1.0")
-    print("    =====================================")
-    print()    
-    print("         Escolha uma opção:")
-    print()
-    print("         [1] Cadastrar livro")
-    print("         [2] Editar livro")
-    print("         [3] Excluir livro")
-    print("         [4] Visualizar livros")
-    print("         [5] Sair do programa")
-    print()
-    print("    =====================================")
-    print("    Digite sua opção abaixo: ")
-    print("    > _", end="")
+    print(f"{"LIBMANAGER v1.0":^48}")
+    print(" " * 4 + "=" * 40 + "\n")
+    print("\tEscolha uma opção:\n")
+    print("\t[1] Cadastrar livro")
+    print("\t[2] Editar livro")
+    print("\t[3] Excluir livro")
+    print("\t[4] Visualizar livros")
+    print("\t[5] Sair do programa\n")
+    print(" " * 4 + "=" * 40)
+    print(" " * 4 + "Digite sua opção abaixo: ")
+    print(" " * 4 + "> _", end="")
 
 
 def get_input():
@@ -52,40 +48,36 @@ def get_input():
                 return choice
             case _:
                 handle_invalid_option_in_menu()
-                input("     >_")
+                input()
                 start_screen()
                 continue
 
 
 def handle_invalid_option_in_menu():
     os.system('cls' if os.name == 'nt' else 'clear')
-    print("    =============== ERRO ================")
-    print()
-    print("               Opção inválida!")
-    print()
-    print("         Pressione [ENTER] para retornar")
-    print("    =====================================")
+    print(" " * 4 + f"{" ERRO ":=^40}\n")
+    print(f"{"Opção inválida!":^48}\n\n\n")
+    print("\tPressione [ENTER] para retornar")
+    print(" " * 4 + "=" * 40)
 
 
 def insert_book_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
-    print("    ============= CADASTRO =============")
-    print()
-    print("            Preencha os dados abaixo.")
-    print()
-    print("     -------------------------------------")
+    print(" " * 4 + f"{" CADASTRO ":=^40}\n\n")
+    print(f"{"Preencha os dados abaixo.":^48}\n\n")
+    print(" " * 4 + "-" * 40)
 
 
 def add_book(books): 
-    print("     (Pressione [ENTER] para retornar)")
+    print(" " * 4 + "(Pressione [ENTER] para retornar)")
 
-    title = input("     Insira o título do livro: ",)
-    if title == "":
+    title = input(" " * 4 + "Insira o título do livro: ",)
+    if not title:
         return False
 
-    author = input("     Insira o nome do autor: ")    
+    author = input(" " * 4 + "Insira o nome do autor: ")    
     # TODO aceitar apenas números em ano
-    date = input("     Insira o ano de lançamento do livro: ")
+    date = input(" " * 4 + "Insira o ano de lançamento do livro: ")
 
     book = {"title": title, "author": author, "date": date}
     books.append(book)
@@ -95,38 +87,35 @@ def add_book(books):
 
 def display_sucess_message(id, list_of_books):
     os.system('cls' if os.name == 'nt' else 'clear')
-    print("    ============= CADASTRO =============")
-    print()
-    print()
-    print("                ID - TÍTULO")
-    print("    ------------------------------------")
-    print(f"                {id}  - {list_of_books[id]["title"]}   ")
-    print()
-    print()
-    print("         Livro Cadastrado com sucesso!")
-    print()
-    print()
-    print("    Pressione [ENTER] para retornar ao menu.")
-    print("    =====================================")
+    print(" " * 4 + f"{" CADASTRO ":=^40}")
+    print("\n\n")
+    print("\t\tID - TÍTULO")
+    print(" " * 4 + "-" * 40)
+    print(f"\t\t{id}  - {list_of_books[id]["title"]}   ")
+    print("\n\n")
+    print(f"{"Livro Cadastrado com sucesso!":^48}")
+    print("\n\n")
+    print(" " * 4 + "Pressione [ENTER] para retornar ao menu.")
+    print(" " * 4 + "=" * 40)
     input()
-# Criar template da mensagem
-# Receber a lista de livros
-# iterar cada livro da lista
+
 
 def view_books(list_of_books):
     os.system('cls' if os.name == 'nt' else 'clear')
 
     count = 0
-    print("    ============= CONSULTA =============")
-    print()
-    print()
-    print(f"    {'ID':<4}{'TÍTULO':<15}{'AUTOR':<10}{'ANO'}")
-    print("    ------------------------------------")
+    print(" " * 4 + f"{" CONSULTA ":=^40}")
+    print("\n\n")
+    print(" " * 4 + f"{'ID':<4}{'TÍTULO':<15}{'AUTOR':<10}{'ANO'}")
+    print(" " * 4 + "-" * 40)
+    
     for book in list_of_books:
-        print(f"    {count:<4}{book.get("title"):<15}{book.get("author"):<10}{book.get("date")}")
+        print(" " * 4 +  f"{count:<4}{book.get("title"):<15}{book.get("author"):<10}{book.get("date")}")
         count += 1
     
-    print("    =====================================")
+    print("\n\n")
+    print(" " * 4 + "Pressione [ENTER] para retornar ao menu.")
+    print(" " * 4 + "=" * 40)
     input()
     
 main()
