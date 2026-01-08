@@ -76,8 +76,12 @@ def add_book(books):
         return False
 
     author = input(" " * 4 + "Insira o nome do autor: ")    
-    # TODO aceitar apenas números em ano
-    date = input(" " * 4 + "Insira o ano de lançamento do livro: ")
+
+    while True:
+        date = input(" " * 4 + "Insira o ano de lançamento do livro: ")
+        if date.isdigit():
+            break
+
 
     book = {"title": title, "author": author, "date": date}
     books.append(book)
@@ -92,9 +96,9 @@ def display_sucess_message(id, list_of_books):
     print("\t\tID - TÍTULO")
     print(" " * 4 + "-" * 40)
     print(f"\t\t{id}  - {list_of_books[id]["title"]}   ")
-    print("\n\n")
+    print("\n")
     print(f"{"Livro Cadastrado com sucesso!":^48}")
-    print("\n\n")
+    print("\n")
     print(" " * 4 + "Pressione [ENTER] para retornar ao menu.")
     print(" " * 4 + "=" * 40)
     input()
