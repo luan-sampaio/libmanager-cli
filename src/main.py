@@ -1,5 +1,6 @@
 import os
 
+# TODO: Criar um sistema de espaçamento e mensagens padrões para todas as telas
 
 def main():
     list_of_books = []
@@ -19,9 +20,9 @@ def main():
             case "3":
                 print("Em manutenção!")
             case "4":
-                print("Q")
-                #view_books(book_id, list_of_books)
+                view_books(list_of_books)
             case "5":
+                # TODO: Mensagem de saída
                 break
 
 
@@ -83,8 +84,8 @@ def add_book(books):
         return False
 
     author = input("     Insira o nome do autor: ")    
+    # TODO aceitar apenas números em ano
     date = input("     Insira o ano de lançamento do livro: ")
-
 
     book = {"title": title, "author": author, "date": date}
     books.append(book)
@@ -108,9 +109,24 @@ def display_sucess_message(id, list_of_books):
     print("    Pressione [ENTER] para retornar ao menu.")
     print("    =====================================")
     input()
+# Criar template da mensagem
+# Receber a lista de livros
+# iterar cada livro da lista
 
+def view_books(list_of_books):
+    os.system('cls' if os.name == 'nt' else 'clear')
 
-#def view_books(id, list_of_books):
+    count = 0
+    print("    ============= CONSULTA =============")
+    print()
+    print()
+    print(f"    {'ID':<4}{'TÍTULO':<15}{'AUTOR':<10}{'ANO'}")
+    print("    ------------------------------------")
+    for book in list_of_books:
+        print(f"    {count:<4}{book.get("title"):<15}{book.get("author"):<10}{book.get("date")}")
+        count += 1
     
-
+    print("    =====================================")
+    input()
+    
 main()
