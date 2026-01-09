@@ -105,6 +105,10 @@ def display_sucess_message(id, list_of_books):
 
 
 def view_books(list_of_books):
+    if not list_of_books:
+        screen_of_empty_list()
+        return 
+
     os.system('cls' if os.name == 'nt' else 'clear')
 
     count = 0
@@ -113,7 +117,6 @@ def view_books(list_of_books):
     print(" " * 4 + f"{'ID':<4}{'TÍTULO':<19}{'AUTOR':<15}{'ANO'}")
     print(" " * 4 + "-" * 40)
     
-    #TODO: Tratar o caso que a lista esteja vazia
     for book in list_of_books:
         print(" " * 4 +  f"{count:<4}{book.get("title"):<19}{book.get("author"):<15}{book.get("date")}")
         count += 1
