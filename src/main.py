@@ -17,7 +17,7 @@ def main():
             case "2":
                 continue
             case "3":
-                continue
+                delete_book(book_id, list_of_books)
             case "4":
                 view_books(list_of_books)
             case "5":
@@ -110,11 +110,12 @@ def view_books(list_of_books):
     count = 0
     print(" " * 4 + f"{" CONSULTA ":=^40}")
     print("\n\n")
-    print(" " * 4 + f"{'ID':<4}{'TÍTULO':<15}{'AUTOR':<10}{'ANO'}")
+    print(" " * 4 + f"{'ID':<4}{'TÍTULO':<19}{'AUTOR':<15}{'ANO'}")
     print(" " * 4 + "-" * 40)
     
+    #TODO: Tratar o caso que a lista esteja vazia
     for book in list_of_books:
-        print(" " * 4 +  f"{count:<4}{book.get("title"):<15}{book.get("author"):<10}{book.get("date")}")
+        print(" " * 4 +  f"{count:<4}{book.get("title"):<19}{book.get("author"):<15}{book.get("date")}")
         count += 1
     
     print("\n\n")
@@ -126,8 +127,94 @@ def view_books(list_of_books):
 def exit_message():
     os.system('cls' if os.name == 'nt' else 'clear')
     print(" " * 4 + "=" * 40 + "\n\n")
-    print(" " * 4 + "Obrigado por usar o sistema!\n\n")
+    print(f"{"Obrigado por usar o sistema!":^48}\n\n")
     print(" " * 4 + "=" * 40)
+
+
+def delete_book_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(" " * 4 + f"{" EXCLUIR ":=^40}\n\n")
+    print(f"{"Digite o ID do livro que deseja excluir!":^48}\n")
+    print(" " * 4 + "(Pressione [ENTER] para retornar)")
+    print(" " * 4 + "=" * 40)
+    print(" " * 4 + "> _", end="")
+
+
+def delete_book(max_id, list_of_books):
+    if not len(list_of_books):
+        screen_of_empty_list()
+        return 
+    
+    delete_book_screen()    
+    choice = get_id(max_id)
+    if not choice:
+        return 
+    
+    if confirm_deletion(int(choice), list_of_books):
+        list_of_books.pop(int(choice))
+        display_sucess_delete()
+        input()
+    return 
+
+
+def message_of_invalid_input():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(" " * 4 + f"{" ERRO ":=^40}\n")
+    print(f"{"ID inexistente!":^48}\n")
+    print(f"{"Acesse a lista de livros":^48}")
+    print(f"{"para consultar o id do livro desejado.":^48}\n\n")
+    print("\tPressione [ENTER] para retornar ao menu")
+    print(" " * 4 + "=" * 40)
+    input()
+
+
+def confirm_deletion(id, books):
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(" " * 4 + f"{" EXCLUIR ":=^40}\n\n")
+    print(f"{"ATENÇÃO: Esta ação não pode ser defesfeita!":^48}\n")    
+    print(" " * 4 + "=" * 40 + "\n")
+    print(" " * 4 + "Livro: " + books[id].get("title"))
+    print(" " * 4 + "Livro: " + books[id].get("author") + '\n')
+    print(" " * 4 + "> Para confirmar, digite 'DELETAR' ou ")
+    print(" " * 4 + "pressione [ENTER] para retornar ao ")
+    print(" " * 4 + "MENU: _", end="")
+    choice = input()
+
+    if choice == "DELETAR":
+        return True
+    return False
+
+
+def display_sucess_delete():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(" " * 4 + "=" * 40 + "\n\n")
+    print(f"{"Livro deletado com sucesso!":^48}\n\n")    
+    print(" " * 4 + "Pressione [ENTER] para retornar ao menu")
+    print(" " * 4 + "=" * 40)
+
+
+def get_id(max_id):
+    choice = input()
+
+    if not choice.isdigit():
+        message_of_invalid_input()
+        return 
+    
+    if not 0 <= int(choice) < int(max_id):
+        message_of_invalid_input()
+        return
+
+    return choice
+
+
+def screen_of_empty_list():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(" " * 4 + "=" * 40)
+    print(f"{"LISTA VAZIA!":^48}\n\n")    
+    print(" " * 4 + "Não existe livros cadastrados no momento!\n\n")
+    print(" " * 4 + "Pressione [ENTER] para retornar ao menu")
+    print(" " * 4 + "=" * 40)
+    input()
 
 
 main()
