@@ -15,9 +15,10 @@ def main():
                     display_sucess_message(book_id, list_of_books)
                     book_id += 1
             case "2":
-                continue
+                edit_book(list_of_books, book_id)
             case "3":
                 delete_book(book_id, list_of_books)
+                book_id -= 1
             case "4":
                 view_books(list_of_books)
             case "5":
@@ -72,12 +73,14 @@ def add_book(books):
     print(" " * 4 + "(Pressione [ENTER] para retornar)")
 
     title = input(" " * 4 + "Insira o título do livro: ",)
+    #TODO: formatar
     if not title:
         return False
 
     author = input(" " * 4 + "Insira o nome do autor: ")    
 
     while True:
+    #TODO: formatar
         date = input(" " * 4 + "Insira o ano de lançamento do livro: ")
         if date.isdigit():
             break
@@ -181,8 +184,8 @@ def confirm_deletion(id, books):
     print(" " * 4 + "> Para confirmar, digite 'DELETAR' ou ")
     print(" " * 4 + "pressione [ENTER] para retornar ao ")
     print(" " * 4 + "MENU: _", end="")
-    choice = input()
 
+    choice = input()
     if choice == "DELETAR":
         return True
     return False
@@ -218,6 +221,55 @@ def screen_of_empty_list():
     print(" " * 4 + "Pressione [ENTER] para retornar ao menu")
     print(" " * 4 + "=" * 40)
     input()
+
+
+def edit_book(list_of_books, max_id):
+    if not len(list_of_books):
+        screen_of_empty_list()
+        return 
+
+    screen_edit_book()
+    choice = get_id(max_id)
+    if not choice:
+        return 
+
+    choice = int(choice)
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(" " * 4 + f"{" EDIÇÃO ":=^40}\n\n")
+    print(" " * 4 + "Título: " + f"{list_of_books[choice].get("title")}")
+    print(" " * 4 + "Autor: " + f"{list_of_books[choice].get("author")}")
+    print(" " * 4 + "Data: " + f"{list_of_books[choice].get("date")}\n\n")
+    print(f"{"Se não for alterar, pressione [ENTER]":^48}")
+    print(" " * 4 + "-" * 40)
+
+    
+    title = input(" " * 4 + "Digite o título: ")
+    if title:
+        list_of_books[choice]["title"] = title
+
+    author = input(" " * 4 + "Digite o autor: ")
+    if author:
+        list_of_books[choice]["author"] = author
+        
+    # TODO: Colocar o handle input
+    date = input(" " * 4 + "Digite o ano: ")
+    if date:
+        list_of_books[choice]["date"] = date
+
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(" " * 4 + "=" * 40 + "\n\n")
+    print(f"{"Livro editado com sucesso!":^48}\n\n")    
+    print(" " * 4 + "Pressione [ENTER] para retornar ao menu")
+    print(" " * 4 + "=" * 40)
+    input()
+
+def screen_edit_book():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(" " * 4 + f"{" EDIÇÃO ":=^40}\n\n")
+    print(f"{"Digite o ID do livro que deseja editar!":^48}\n")
+    print(" " * 4 + "(Pressione [ENTER] para retornar)")
+    print(" " * 4 + "=" * 40)
+    print(" " * 4 + "> _", end="")
 
 
 main()
