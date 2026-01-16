@@ -29,7 +29,7 @@ def main():
 
 def start_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
-    print(f"{"LIBMANAGER v1.0":^48}")
+    print(f"{'LIBMANAGER v1.0':^48}")
     print(" " * 4 + "=" * 40 + "\n")
     print("\tEscolha uma opção:\n")
     print("\t[1] Cadastrar livro")
@@ -57,16 +57,16 @@ def get_input():
 
 def handle_invalid_option_in_menu():
     os.system('cls' if os.name == 'nt' else 'clear')
-    print(" " * 4 + f"{" ERRO ":=^40}\n")
-    print(f"{"Opção inválida!":^48}\n\n\n")
+    print(" " * 4 + f"{' ERRO ':=^40}\n")
+    print(f"{'Opção inválida!':^48}\n\n\n")
     print("\tPressione [ENTER] para retornar")
     print(" " * 4 + "=" * 40)
 
 
 def insert_book_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
-    print(" " * 4 + f"{" CADASTRO ":=^40}\n\n")
-    print(f"{"Preencha os dados abaixo.":^48}\n\n")
+    print(" " * 4 + f"{' CADASTRO ':=^40}\n\n")
+    print(f"{'Preencha os dados abaixo.':^48}\n\n")
     print(" " * 4 + "-" * 40)
 
 
@@ -95,13 +95,13 @@ def add_book(books):
 
 def display_sucess_message(id, list_of_books):
     os.system('cls' if os.name == 'nt' else 'clear')
-    print(" " * 4 + f"{" CADASTRO ":=^40}")
+    print(" " * 4 + f"{' CADASTRO ':=^40}")
     print("\n\n")
     print("\t\tID - TÍTULO")
     print(" " * 4 + "-" * 40)
-    print(f"\t\t{id}  - {list_of_books[id]["title"]}   ")
+    print(f"\t\t{id}  - {list_of_books[id]['title']}   ")
     print("\n")
-    print(f"{"Livro Cadastrado com sucesso!":^48}")
+    print(f"{'Livro Cadastrado com sucesso!':^48}")
     print("\n")
     print(" " * 4 + "Pressione [ENTER] para retornar ao menu.")
     print(" " * 4 + "=" * 40)
@@ -116,13 +116,13 @@ def view_books(list_of_books):
     os.system('cls' if os.name == 'nt' else 'clear')
 
     count = 0
-    print(" " * 4 + f"{" CONSULTA ":=^40}")
+    print(" " * 4 + f"{' CONSULTA ':=^40}")
     print("\n\n")
     print(" " * 4 + f"{'ID':<4}{'TÍTULO':<19}{'AUTOR':<15}{'ANO'}")
     print(" " * 4 + "-" * 40)
     
     for book in list_of_books:
-        print(" " * 4 +  f"{count:<4}{book.get("title"):<19}{book.get("author"):<15}{book.get("date")}")
+        print(" " * 4 +  f"{count:<4}{book.get('title'):<19}{book.get('author'):<15}{book.get('date')}")
         count += 1
     
     print("\n\n")
@@ -134,14 +134,14 @@ def view_books(list_of_books):
 def exit_message():
     os.system('cls' if os.name == 'nt' else 'clear')
     print(" " * 4 + "=" * 40 + "\n\n")
-    print(f"{"Obrigado por usar o sistema!":^48}\n\n")
+    print(f"{'Obrigado por usar o sistema!':^48}\n\n")
     print(" " * 4 + "=" * 40)
 
 
 def delete_book_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
-    print(" " * 4 + f"{" EXCLUIR ":=^40}\n\n")
-    print(f"{"Digite o ID do livro que deseja excluir!":^48}\n")
+    print(" " * 4 + f"{' EXCLUIR ':=^40}\n\n")
+    print(f"{'Digite o ID do livro que deseja excluir!':^48}\n")
     print(" " * 4 + "(Pressione [ENTER] para retornar)")
     print(" " * 4 + "=" * 40)
     print(" " * 4 + "> _", end="")
@@ -166,22 +166,22 @@ def delete_book(max_id, list_of_books):
 
 def message_of_invalid_input():
     os.system('cls' if os.name == 'nt' else 'clear')
-    print(" " * 4 + f"{" ERRO ":=^40}\n")
-    print(f"{"ID inexistente!":^48}\n")
-    print(f"{"Acesse a lista de livros":^48}")
-    print(f"{"para consultar o id do livro desejado.":^48}\n\n")
-    print("\tPressione [ENTER] para retornar ao menu")
+    print(" " * 4 + f"{' ERRO ':=^40}\n")
+    print(f"{'ID inexistente!':^48}\n")
+    print(f"{'Acesse a lista de livros':^48}")
+    print(f"{'para consultar o id do livro desejado.':^48}\n\n")
+    print('\tPressione [ENTER] para retornar ao menu')
     print(" " * 4 + "=" * 40)
     input()
 
 
 def confirm_deletion(id, books):
     os.system('cls' if os.name == 'nt' else 'clear')
-    print(" " * 4 + f"{" EXCLUIR ":=^40}\n\n")
-    print(f"{"ATENÇÃO: Esta ação não pode ser defesfeita!":^48}\n")    
+    print(" " * 4 + f"{' EXCLUIR ':=^40}\n\n")
+    print(f"{'ATENÇÃO: Esta ação não pode ser defesfeita!':^48}\n")    
     print(" " * 4 + "=" * 40 + "\n")
-    print(" " * 4 + "Livro: " + books[id].get("title"))
-    print(" " * 4 + "Livro: " + books[id].get("author") + '\n')
+    print(" " * 4 + "Livro: " + books[id].get('title'))
+    print(" " * 4 + "Livro: " + books[id].get('author') + '\n')
     print(" " * 4 + "> Para confirmar, digite 'DELETAR' ou ")
     print(" " * 4 + "pressione [ENTER] para retornar ao ")
     print(" " * 4 + "MENU: _", end="")
@@ -195,7 +195,7 @@ def confirm_deletion(id, books):
 def display_sucess_delete():
     os.system('cls' if os.name == 'nt' else 'clear')
     print(" " * 4 + "=" * 40 + "\n\n")
-    print(f"{"Livro deletado com sucesso!":^48}\n\n")    
+    print(f"{'Livro deletado com sucesso!':^48}\n\n")    
     print(" " * 4 + "Pressione [ENTER] para retornar ao menu")
     print(" " * 4 + "=" * 40)
 
@@ -217,7 +217,7 @@ def get_id(max_id):
 def screen_of_empty_list():
     os.system('cls' if os.name == 'nt' else 'clear')
     print(" " * 4 + "=" * 40)
-    print(f"{"LISTA VAZIA!":^48}\n\n")    
+    print(f"{'LISTA VAZIA!':^48}\n\n")    
     print(" " * 4 + "Não existe livros cadastrados no momento!\n\n")
     print(" " * 4 + "Pressione [ENTER] para retornar ao menu")
     print(" " * 4 + "=" * 40)
@@ -236,11 +236,11 @@ def edit_book(list_of_books, max_id):
 
     choice = int(choice)
     os.system('cls' if os.name == 'nt' else 'clear')
-    print(" " * 4 + f"{" EDIÇÃO ":=^40}\n\n")
-    print(" " * 4 + "Título: " + f"{list_of_books[choice].get("title")}")
-    print(" " * 4 + "Autor: " + f"{list_of_books[choice].get("author")}")
-    print(" " * 4 + "Data: " + f"{list_of_books[choice].get("date")}\n\n")
-    print(f"{"Se não for alterar, pressione [ENTER]":^48}")
+    print(" " * 4 + f"{' EDIÇÃO ':=^40}\n\n")
+    print(" " * 4 + "Título: " + f"{list_of_books[choice].get('title')}")
+    print(" " * 4 + "Autor: " + f"{list_of_books[choice].get('author')}")
+    print(" " * 4 + "Data: " + f"{list_of_books[choice].get('date')}\n\n")
+    print(f"{'Se não for alterar, pressione [ENTER]':^48}")
     print(" " * 4 + "-" * 40)
 
     
@@ -262,15 +262,15 @@ def edit_book(list_of_books, max_id):
     # a tela tá aparecendo como editada sem eu ter editado nada 
     os.system('cls' if os.name == 'nt' else 'clear')
     print(" " * 4 + "=" * 40 + "\n\n")
-    print(f"{"Livro editado com sucesso!":^48}\n\n")    
-    print(" " * 4 + "Pressione [ENTER] para retornar ao menu")
+    print(f"{'Livro editado com sucesso!':^48}\n\n")    
+    print(" " * 4 + 'Pressione [ENTER] para retornar ao menu')
     print(" " * 4 + "=" * 40)
     input()
 
 def screen_edit_book():
     os.system('cls' if os.name == 'nt' else 'clear')
-    print(" " * 4 + f"{" EDIÇÃO ":=^40}\n\n")
-    print(f"{"Digite o ID do livro que deseja editar!":^48}\n")
+    print(" " * 4 + f"{' EDIÇÃO ':=^40}\n\n")
+    print(f"{'Digite o ID do livro que deseja editar!':^48}\n")
     print(" " * 4 + "(Pressione [ENTER] para retornar)")
     print(" " * 4 + "=" * 40)
     print(" " * 4 + "> _", end="")
