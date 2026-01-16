@@ -136,7 +136,7 @@ def exit_message():
     print(" " * 4 + "=" * 40 + "\n\n")
     print(f"{'Obrigado por usar o sistema!':^48}\n\n")
     print(" " * 4 + "=" * 40)
-Modular Programming in Python
+
 
 def delete_book_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
