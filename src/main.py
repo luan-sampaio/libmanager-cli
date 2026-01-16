@@ -18,7 +18,8 @@ def main():
                 edit_book(list_of_books, book_id)
             case "3":
                 delete_book(book_id, list_of_books)
-                book_id -= 1
+                if book_id > 0:
+                    book_id -= 1
             case "4":
                 view_books(list_of_books)
             case "5":
@@ -84,7 +85,7 @@ def add_book(books):
         date = input(" " * 4 + "Insira o ano de lançamento do livro: ")
         if date.isdigit():
             break
-
+            
 
     book = {"title": title, "author": author, "date": date}
     books.append(book)
@@ -256,6 +257,9 @@ def edit_book(list_of_books, max_id):
     if date:
         list_of_books[choice]["date"] = date
 
+
+    # Criar algum mecanismo para saber se houve alteração, pois
+    # a tela tá aparecendo como editada sem eu ter editado nada 
     os.system('cls' if os.name == 'nt' else 'clear')
     print(" " * 4 + "=" * 40 + "\n\n")
     print(f"{"Livro editado com sucesso!":^48}\n\n")    
