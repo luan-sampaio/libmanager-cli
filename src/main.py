@@ -14,7 +14,7 @@ def main():
             case "1":
                 interface.insert_book_screen()
                 if functions_book.add_book(list_of_books):
-                    interface.display_sucess_message(book_id, list_of_books)
+                    interface.display_sucess_message(book_id)
                     book_id += 1
             case "2":
                 functions_book.edit_book(list_of_books, book_id)

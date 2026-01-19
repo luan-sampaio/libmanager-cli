@@ -1,6 +1,6 @@
 import os
 import interface
-
+import database
 
 def add_book(books): 
     print(" " * 4 + "(Pressione [ENTER] para retornar)")
@@ -18,7 +18,7 @@ def add_book(books):
             
 
     book = {"title": title, "author": author, "date": date}
-    books.append(book)
+    database.save_book(book)
 
     return True
 

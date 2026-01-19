@@ -1,5 +1,5 @@
 import os
-
+import database
 
 def start_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -44,12 +44,14 @@ def insert_book_screen():
     print(" " * 4 + "-" * 40)
 
 
-def display_sucess_message(id, list_of_books):
+def display_sucess_message(id):
     os.system('cls' if os.name == 'nt' else 'clear')
     print(" " * 4 + f"{' CADASTRO ':=^40}")
     print("\n\n")
     print("\t\tID - TÍTULO")
     print(" " * 4 + "-" * 40)
+    list_of_books = database.show_list_of_books()
+
     print(f"\t\t{id}  - {list_of_books[id]['title']}   ")
     print("\n")
     print(f"{'Livro Cadastrado com sucesso!':^48}")
