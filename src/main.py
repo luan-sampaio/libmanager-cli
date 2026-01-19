@@ -4,7 +4,6 @@ import functions_book
 
 
 def main():
-    list_of_books = []
     book_id = 0
 
     while True:
@@ -13,17 +12,17 @@ def main():
         match options:
             case "1":
                 interface.insert_book_screen()
-                if functions_book.add_book(list_of_books):
+                if functions_book.add_book():
                     interface.display_sucess_message(book_id)
                     book_id += 1
             case "2":
-                functions_book.edit_book(list_of_books, book_id)
+                functions_book.edit_book(book_id)
             case "3":
-                functions_book.delete_book(book_id, list_of_books)
+                functions_book.delete_book(book_id)
                 if book_id > 0:
                     book_id -= 1
             case "4":
-                functions_book.view_books(list_of_books)
+                functions_book.view_books()
             case "5":
                 interface.exit_message()
                 break

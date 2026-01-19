@@ -2,7 +2,7 @@ import os
 import interface
 import database
 
-def add_book(books): 
+def add_book(): 
     print(" " * 4 + "(Pressione [ENTER] para retornar)")
 
     title = input(" " * 4 + "Insira o título do livro: ",)
@@ -23,7 +23,8 @@ def add_book(books):
     return True
 
 
-def view_books(list_of_books):
+def view_books():
+    list_of_books = database.show_list_of_books()
     if not list_of_books:
         interface.screen_of_empty_list()
         return 
@@ -46,7 +47,8 @@ def view_books(list_of_books):
     input()
     
 
-def delete_book(max_id, list_of_books):
+def delete_book(max_id):
+    list_of_books = database.show_list_of_books()
     if not len(list_of_books):
         interface.screen_of_empty_list()
         return 
@@ -63,7 +65,8 @@ def delete_book(max_id, list_of_books):
     return 
 
 
-def edit_book(list_of_books, max_id):
+def edit_book(max_id):
+    list_of_books = database.show_list_of_books()
     if not len(list_of_books):
         interface.screen_of_empty_list()
         return 
