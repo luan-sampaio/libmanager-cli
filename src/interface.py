@@ -143,3 +143,13 @@ def screen_edit_book():
     print(" " * 4 + "(Pressione [ENTER] para retornar)")
     print(" " * 4 + "=" * 40)
     print(" " * 4 + "> _", end="")
+
+
+def screen_of_empty_list():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(" " * 4 + "=" * 40)
+    print(f"{'LISTA VAZIA!':^48}\n\n")    
+    print(" " * 4 + "Não existe livros cadastrados no momento!\n\n")
+    print(" " * 4 + "Pressione [ENTER] para retornar ao menu")
+    print(" " * 4 + "=" * 40)
+    input()
