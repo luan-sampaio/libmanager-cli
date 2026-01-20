@@ -27,21 +27,21 @@ def get_input():
             case "1" | "2" | "3" | "4" | "5":
                 return choice
             case _:
-                default_screen(Type.INVALID.value)
+                default_screen(Type_screen.INVALID.value, Type_input.ENTER.value)
                 input()
                 start_screen()
                 continue
 
 
-def default_screen(value):
+def default_screen(value_screen, value_input):
     os.system('cls' if os.name == 'nt' else 'clear')
-    for i in range(len(list_screen[value])):
+    for i in range(len(list_screen[value_screen])):
         if i == 0:
-            print(SPACING + f"{list_screen[value][i]:=^40}\n\n")
+            print(SPACING + f"{list_screen[value_screen][i]:=^40}\n\n")
         else:
-            print(f"{list_screen[value][i]:^48}\n\n")
+            print(f"{list_screen[value_screen][i]:^48}\n\n")
     
-    for option in list_input_screen[value]:
+    for option in list_input_screen[value_input]:
         print(option)
         
 
@@ -50,18 +50,22 @@ def screen_press_enter():
     print(SPACING + "=" * 40)
 
 
-class Type(Enum):
+class Type_screen(Enum):
     INVALID = 0
     INSERT = 1
-    ENTER = 2
+
+class Type_input(Enum):
+    ENTER = 0
+
 
 list_screen = [
     [" ERRO ", "Opção inválida!"],
-    [" CADASTRO ", "Preencha os dados abaixo."]
+    [" CADASTRO "],
 ]
 
 list_input_screen = [
-    ["\tPressione [ENTER] para retornar", SPACING + "=" * 40]
+    ["\tPressione [ENTER] para retornar", SPACING + "=" * 40],
+    ["Preencha os dados abaixo.", SPACING + "-" * 40],
 ]
 
 
