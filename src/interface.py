@@ -4,6 +4,8 @@ import database
 from enum import Enum
 
 SPACING = " " * 4
+SPACING_EQUAL_SIGN = " " * 4 + "=" * 40
+SPACING_MINUS_SIGN = " " * 4 + "-" * 40
 
 def start_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -45,28 +47,28 @@ def default_screen(value_screen, value_input):
         print(option)
         
 
-def screen_press_enter():
-    print("\tPressione [ENTER] para retornar")
-    print(SPACING + "=" * 40)
-
-
 class Type_screen(Enum):
     INVALID = 0
     INSERT = 1
+    EXIT = 2
+
 
 class Type_input(Enum):
     ENTER = 0
     FILL = 1
+    EXIT = 2
 
 
 list_screen = [
     [" ERRO ", "Opção inválida!"],
     [" CADASTRO "],
+    [""],
 ]
 
 list_input_screen = [
-    ["\tPressione [ENTER] para retornar", SPACING + "=" * 40],
-    [f"{'Preencha os dados abaixo.':^48}\n", SPACING + "-" * 40],
+    ["\tPressione [ENTER] para retornar", SPACING_EQUAL_SIGN],
+    [f"{'Preencha os dados abaixo.':^48}\n", SPACING_MINUS_SIGN],
+    [f"{'Obrigado por usar o sistema!':^48}\n\n", SPACING_EQUAL_SIGN]
 ]
 
 
@@ -85,13 +87,6 @@ def display_sucess_message(id):
     print(" " * 4 + "Pressione [ENTER] para retornar ao menu.")
     print(" " * 4 + "=" * 40)
     input()
-
-
-def exit_message():
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print(" " * 4 + "=" * 40 + "\n\n")
-    print(f"{'Obrigado por usar o sistema!':^48}\n\n")
-    print(" " * 4 + "=" * 40)
 
 
 def delete_book_screen():
@@ -161,7 +156,6 @@ def get_id(max_id):
 
     return choice
 
-
 def screen_edit_book():
     os.system('cls' if os.name == 'nt' else 'clear')
     print(" " * 4 + f"{' EDIÇÃO ':=^40}\n\n")
@@ -179,3 +173,4 @@ def screen_of_empty_list():
     print(" " * 4 + "Pressione [ENTER] para retornar ao menu")
     print(" " * 4 + "=" * 40)
     input()
+

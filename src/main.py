@@ -24,7 +24,7 @@ def main():
             case "4":
                 functions_book.view_books()
             case "5":
-                interface.exit_message()
+                interface.default_screen(Type_screen.EXIT.value, Type_input.EXIT.value)
                 break
 
 
