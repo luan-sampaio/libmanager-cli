@@ -1,5 +1,4 @@
 import os
-import database
 
 from enum import Enum
 
@@ -17,6 +16,8 @@ class Type_screen(Enum):
     DELETE = 5
     INVALID_INPUT = 6
     EMPTY = 7
+    DELETE_SUCESS = 8
+    REGISTER = 9
 
 
 class Type_input(Enum):
@@ -38,7 +39,9 @@ list_screen = [
     [" EXCLUIR ", "Digite o ID do livro que deseja excluir!"],
     [" ERRO ", "ID inexistente!\n", "Acesse a lista de livros", 
      "para consultar o id do livro desejado.\n\n"],
-    [" LISTA VAZIA ", "Não existe livros cadastrados no momento!"]
+    [" LISTA VAZIA ", "Não existe livros cadastrados no momento!"],
+    ["", "Livro deletado com sucesso!"],
+    [" CADASTRO ", "Livro Cadastrado com sucesso!"]
 ]
 
 
@@ -46,17 +49,12 @@ list_input_screen = [
     ["\tPressione [ENTER] para retornar\n", SPACING_EQUAL_SIGN],
     [f"{'Preencha os dados abaixo.':^48}\n", SPACING_MINUS_SIGN],
     [f"{'Obrigado por usar o sistema!':^48}\n\n", SPACING_EQUAL_SIGN],
-    [SPACING + "(Pressione [ENTER] para retornar)\n", SPACING_EQUAL_SIGN], 
+    [SPACING + "(Pressione [ENTER] para retornar)\n", SPACING_EQUAL_SIGN, 
+      SPACING + "> _"], 
     [SPACING_EQUAL_SIGN, SPACING + "Digite sua opção abaixo: \n", 
      SPACING + "> _"],
 ]
 
-def display_sucess_delete():
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print(" " * 4 + "=" * 40 + "\n\n")
-    print(f"{'Livro deletado com sucesso!':^48}\n\n")    
-    print(" " * 4 + "Pressione [ENTER] para retornar ao menu")
-    print(" " * 4 + "=" * 40)
 
 def default_screen(value_screen, value_input):
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -73,23 +71,6 @@ def default_screen(value_screen, value_input):
     for option in list_input_screen[value_input]:
         print(option, end="")
         
-
-def display_sucess_message(id):
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print(" " * 4 + f"{' CADASTRO ':=^40}")
-    print("\n\n")
-    print("\t\tID - TÍTULO")
-    print(" " * 4 + "-" * 40)
-    list_of_books = database.show_list_of_books()
-
-    print(f"\t\t{id}  - {list_of_books[id]['title']}   ")
-    print("\n")
-    print(f"{'Livro Cadastrado com sucesso!':^48}")
-    print("\n")
-    print(" " * 4 + "Pressione [ENTER] para retornar ao menu.")
-    print(" " * 4 + "=" * 40)
-    input()
-
 
 def confirm_deletion(id, books):
     os.system('cls' if os.name == 'nt' else 'clear')

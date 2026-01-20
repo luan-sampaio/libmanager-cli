@@ -64,7 +64,7 @@ def delete_book(max_id):
     
     if interface.confirm_deletion(int(choice), list_of_books):
         list_of_books.pop(int(choice))
-        interface.display_sucess_delete()
+        interface.default_screen(Type_screen.DELETE_SUCESS.value, Type_input.ENTER.value)
         input()
     return 
 

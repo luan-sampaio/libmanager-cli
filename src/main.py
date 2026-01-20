@@ -13,10 +13,10 @@ def main():
             case "1":
                 interface.default_screen(Type_screen.INSERT.value, Type_input.FILL.value)
                 if functions_book.add_book():
-                    interface.display_sucess_message(book_id)
+                    interface.default_screen(Type_screen.REGISTER.value, Type_input.ENTER.value)
+                    input()
                     book_id += 1
             case "2":
-                interface.default_screen(Type_screen.EDIT.value, Type_input.EDIT.value)
                 functions_book.edit_book(book_id)
             case "3":
                 functions_book.delete_book(book_id)
