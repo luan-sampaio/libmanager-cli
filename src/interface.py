@@ -1,5 +1,5 @@
 import os
-
+from database import show_list_of_books
 from enum import Enum
 
 SPACING = " " * 4
@@ -18,6 +18,7 @@ class Type_screen(Enum):
     EMPTY = 7
     DELETE_SUCESS = 8
     REGISTER = 9
+    CONFIRM_DELETE = 10
 
 
 class Type_input(Enum):
@@ -26,6 +27,7 @@ class Type_input(Enum):
     EXIT = 2
     EDIT = 3
     START = 4
+    EXCLUDE = 5
 
 
 list_screen = [
@@ -41,7 +43,8 @@ list_screen = [
      "para consultar o id do livro desejado.\n\n"],
     [" LISTA VAZIA ", "Não existe livros cadastrados no momento!"],
     ["", "Livro deletado com sucesso!"],
-    [" CADASTRO ", "Livro Cadastrado com sucesso!"]
+    [" CADASTRO ", "Livro Cadastrado com sucesso!"],
+    [" EXCLUIR ", "ATENÇÃO: Esta ação não pode ser defesfeita!"]
 ]
 
 
@@ -53,24 +56,9 @@ list_input_screen = [
       SPACING + "> _"], 
     [SPACING_EQUAL_SIGN, SPACING + "Digite sua opção abaixo: \n", 
      SPACING + "> _"],
+    [SPACING_EQUAL_SIGN, SPACING + "> Para confirmar, digite 'DELETAR' ou ", SPACING +
+     "pressione [ENTER] para retornar ao ", SPACING + "MENU: _"]
 ]
-
-
-def default_screen(value_screen, value_input):
-    os.system('cls' if os.name == 'nt' else 'clear')
-    for i in range(len(list_screen[value_screen])):
-        if i == 0:
-            print(SPACING + f"{list_screen[value_screen][i]:=^40}\n\n")
-        elif value_screen == 4:
-            print(list_screen[value_screen][i])
-        elif value_screen == 6:
-            print(f"{list_screen[value_screen][i]:^48}")
-        else:
-            print(f"{list_screen[value_screen][i]:^48}\n\n")
-    
-    for option in list_input_screen[value_input]:
-        print(option, end="")
-        
 
 def confirm_deletion(id, books):
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -88,6 +76,33 @@ def confirm_deletion(id, books):
         return True
     return False
 
+def show_book_to_delete(id):
+    list_books = show_list_of_books()
+    print(" " * 4 + "Título: " + list_books[id].get('title'))
+    print(" " * 4 + "Autor: " + list_books[id].get('author') + '\n')
+
+
+def default_screen(value_screen, value_input):
+    os.system('cls' if os.name == 'nt' else 'clear')
+    for i in range(len(list_screen[value_screen])):
+        if i == 0:
+            print(SPACING + f"{list_screen[value_screen][i]:=^40}\n\n")
+        elif value_screen == 4:
+            print(list_screen[value_screen][i])
+        elif value_screen == 6:
+            print(f"{list_screen[value_screen][i]:^48}")
+        else:
+            print(f"{list_screen[value_screen][i]:^48}\n\n")
+    
+    for option in list_input_screen[value_input]:
+        if value_input == Type_input.EXCLUDE.value:
+            if option == SPACING + "MENU: _":
+                print(option, end="")
+            else:
+                print(option)
+        else:
+            print(option, end="")
+        
 
 def get_id(max_id):
     choice = input()

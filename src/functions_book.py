@@ -62,10 +62,14 @@ def delete_book(max_id):
     if not choice:
         return 
     
-    if interface.confirm_deletion(int(choice), list_of_books):
-        list_of_books.pop(int(choice))
-        interface.default_screen(Type_screen.DELETE_SUCESS.value, Type_input.ENTER.value)
-        input()
+    interface.default_screen(Type_screen.CONFIRM_DELETE.value, Type_input.EXCLUDE.value)
+    #interface.show_book_to_delete(int(choice))
+    input()
+
+   # if interface.confirm_deletion(int(choice), list_of_books):
+    #    list_of_books.pop(int(choice))
+     #   interface.default_screen(Type_screen.DELETE_SUCESS.value, Type_input.ENTER.value)
+      #  input()
     return 
 
 
