@@ -21,15 +21,6 @@ class Type_screen(Enum):
     CONFIRM_DELETE = 10
 
 
-class Type_input(Enum):
-    ENTER = 0
-    FILL = 1
-    EXIT = 2
-    EDIT = 3
-    START = 4
-    EXCLUDE = 5
-
-
 list_screen = [
     [" ERRO ", "Opção inválida!"],
     [" CADASTRO "],
@@ -48,6 +39,15 @@ list_screen = [
 ]
 
 
+class Type_input(Enum):
+    ENTER = 0
+    FILL = 1
+    EXIT = 2
+    EDIT = 3
+    START = 4
+    EXCLUDE = 5
+
+
 list_input_screen = [
     ["\tPressione [ENTER] para retornar\n", SPACING_EQUAL_SIGN],
     [f"{'Preencha os dados abaixo.':^48}\n", SPACING_MINUS_SIGN],
@@ -59,6 +59,7 @@ list_input_screen = [
     [SPACING_EQUAL_SIGN, SPACING + "> Para confirmar, digite 'DELETAR' ou ", SPACING +
      "pressione [ENTER] para retornar ao ", SPACING + "MENU: _"]
 ]
+
 
 def confirm_deletion(id, books):
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -76,13 +77,14 @@ def confirm_deletion(id, books):
         return True
     return False
 
+
 def show_book_to_delete(id):
     list_books = show_list_of_books()
     print(" " * 4 + "Título: " + list_books[id].get('title'))
     print(" " * 4 + "Autor: " + list_books[id].get('author') + '\n')
 
 
-def default_screen(value_screen, value_input):
+def default_screen(value_screen):
     os.system('cls' if os.name == 'nt' else 'clear')
     for i in range(len(list_screen[value_screen])):
         if i == 0:
@@ -93,7 +95,9 @@ def default_screen(value_screen, value_input):
             print(f"{list_screen[value_screen][i]:^48}")
         else:
             print(f"{list_screen[value_screen][i]:^48}\n\n")
-    
+
+
+def default_screen_input(value_input):
     for option in list_input_screen[value_input]:
         if value_input == Type_input.EXCLUDE.value:
             if option == SPACING + "MENU: _":
@@ -102,7 +106,7 @@ def default_screen(value_screen, value_input):
                 print(option)
         else:
             print(option, end="")
-        
+
 
 def get_id(max_id):
     choice = input()
