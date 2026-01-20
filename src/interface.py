@@ -1,6 +1,10 @@
 import os
 import database
 
+from enum import Enum
+
+SPACING = " " * 4
+
 def start_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
     print(f"{'LIBMANAGER v1.0':^48}")
@@ -23,18 +27,35 @@ def get_input():
             case "1" | "2" | "3" | "4" | "5":
                 return choice
             case _:
-                handle_invalid_option_in_menu()
+                default_screen(list_screen[Type.INVALID.value])
                 input()
                 start_screen()
                 continue
 
 
-def handle_invalid_option_in_menu():
+def default_screen(type):
     os.system('cls' if os.name == 'nt' else 'clear')
-    print(" " * 4 + f"{' ERRO ':=^40}\n")
-    print(f"{'Opção inválida!':^48}\n\n\n")
+    for i in range(len(type)):
+        if i == 0:
+            print(SPACING + f"{type[i]:=^40}\n\n")
+        else:
+            print(f"{type[i]:^48}\n\n")
+    
+    screen_press_enter()    
+        
+
+
+class Type(Enum):
+    INVALID = 0
+
+list_screen = [
+    [' ERRO ', 'Opção inválida!']
+]
+
+
+def screen_press_enter():
     print("\tPressione [ENTER] para retornar")
-    print(" " * 4 + "=" * 40)
+    print(SPACING + "=" * 40)
 
 
 def insert_book_screen():
