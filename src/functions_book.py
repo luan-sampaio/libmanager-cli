@@ -27,7 +27,8 @@ def add_book():
 def view_books():
     list_of_books = database.show_list_of_books()
     if not list_of_books:
-        interface.screen_of_empty_list()
+        interface.default_screen(Type_screen.EMPTY.value, Type_input.ENTER.value)
+        input()
         return 
 
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -51,7 +52,8 @@ def view_books():
 def delete_book(max_id):
     list_of_books = database.show_list_of_books()
     if not len(list_of_books):
-        interface.screen_of_empty_list()
+        interface.default_screen(Type_screen.EMPTY.value, Type_input.ENTER.value)
+        input()
         return 
     
     interface.default_screen(Type_screen.DELETE.value, Type_input.EDIT.value)
@@ -70,11 +72,12 @@ def delete_book(max_id):
 def edit_book(max_id):
     list_of_books = database.show_list_of_books()
     if not len(list_of_books):
-        interface.screen_of_empty_list()
+        interface.default_screen(Type_screen.EMPTY.value, Type_input.ENTER.value)
+        input()
         return 
 
-    choice = interface.get_id(max_id)
     interface.default_screen(Type_screen.EDIT.value, Type_input.EDIT.value)
+    choice = interface.get_id(max_id)
     if not choice:
         return 
 

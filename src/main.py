@@ -16,6 +16,7 @@ def main():
                     interface.display_sucess_message(book_id)
                     book_id += 1
             case "2":
+                interface.default_screen(Type_screen.EDIT.value, Type_input.EDIT.value)
                 functions_book.edit_book(book_id)
             case "3":
                 functions_book.delete_book(book_id)

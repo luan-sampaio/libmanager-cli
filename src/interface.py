@@ -16,6 +16,7 @@ class Type_screen(Enum):
     START = 4
     DELETE = 5
     INVALID_INPUT = 6
+    EMPTY = 7
 
 
 class Type_input(Enum):
@@ -36,7 +37,8 @@ list_screen = [
      "\t[5] Sair do programa\n"],
     [" EXCLUIR ", "Digite o ID do livro que deseja excluir!"],
     [" ERRO ", "ID inexistente!\n", "Acesse a lista de livros", 
-     "para consultar o id do livro desejado.\n\n"]
+     "para consultar o id do livro desejado.\n\n"],
+    [" LISTA VAZIA ", "Não existe livros cadastrados no momento!"]
 ]
 
 
@@ -44,12 +46,17 @@ list_input_screen = [
     ["\tPressione [ENTER] para retornar\n", SPACING_EQUAL_SIGN],
     [f"{'Preencha os dados abaixo.':^48}\n", SPACING_MINUS_SIGN],
     [f"{'Obrigado por usar o sistema!':^48}\n\n", SPACING_EQUAL_SIGN],
-    [SPACING + "(Pressione [ENTER] para retornar)\n", SPACING_EQUAL_SIGN, 
-     " " * 4 + "> _"],
+    [SPACING + "(Pressione [ENTER] para retornar)\n", SPACING_EQUAL_SIGN], 
     [SPACING_EQUAL_SIGN, SPACING + "Digite sua opção abaixo: \n", 
      SPACING + "> _"],
 ]
 
+def display_sucess_delete():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(" " * 4 + "=" * 40 + "\n\n")
+    print(f"{'Livro deletado com sucesso!':^48}\n\n")    
+    print(" " * 4 + "Pressione [ENTER] para retornar ao menu")
+    print(" " * 4 + "=" * 40)
 
 def default_screen(value_screen, value_input):
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -84,15 +91,6 @@ def display_sucess_message(id):
     input()
 
 
-def screen_edit_book():
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print(" " * 4 + f"{' EDIÇÃO ':=^40}\n\n")
-    print(f"{'Digite o ID do livro que deseja editar!':^48}\n")
-    print(" " * 4 + "(Pressione [ENTER] para retornar)")
-    print(" " * 4 + "=" * 40)
-    print(" " * 4 + "> _", end="")
-
-
 def confirm_deletion(id, books):
     os.system('cls' if os.name == 'nt' else 'clear')
     print(" " * 4 + f"{' EXCLUIR ':=^40}\n\n")
@@ -110,14 +108,6 @@ def confirm_deletion(id, books):
     return False
 
 
-def display_sucess_delete():
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print(" " * 4 + "=" * 40 + "\n\n")
-    print(f"{'Livro deletado com sucesso!':^48}\n\n")    
-    print(" " * 4 + "Pressione [ENTER] para retornar ao menu")
-    print(" " * 4 + "=" * 40)
-
-
 def get_id(max_id):
     choice = input()
 
@@ -132,14 +122,3 @@ def get_id(max_id):
         return
 
     return choice
-
-
-def screen_of_empty_list():
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print(" " * 4 + "=" * 40)
-    print(f"{'LISTA VAZIA!':^48}\n\n")    
-    print(" " * 4 + "Não existe livros cadastrados no momento!\n\n")
-    print(" " * 4 + "Pressione [ENTER] para retornar ao menu")
-    print(" " * 4 + "=" * 40)
-    input()
-
