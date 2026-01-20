@@ -73,8 +73,8 @@ def edit_book(max_id):
         interface.screen_of_empty_list()
         return 
 
-    interface.default_screen(Type_screen.EDIT.value, Type_input.EDIT.value)
     choice = interface.get_id(max_id)
+    interface.default_screen(Type_screen.EDIT.value, Type_input.EDIT.value)
     if not choice:
         return 
 

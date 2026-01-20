@@ -15,6 +15,7 @@ class Type_screen(Enum):
     EDIT = 3
     START = 4
     DELETE = 5
+    INVALID_INPUT = 6
 
 
 class Type_input(Enum):
@@ -33,7 +34,9 @@ list_screen = [
     [" LIBMANAGER v1.0 ", "\tEscolha uma opção:\n", "\t[1] Cadastrar livro", 
      "\t[2] Editar livro", "\t[3] Excluir livro", "\t[4] Visualizar livros",
      "\t[5] Sair do programa\n"],
-    [" EXCLUIR ", "Digite o ID do livro que deseja excluir!"]
+    [" EXCLUIR ", "Digite o ID do livro que deseja excluir!"],
+    [" ERRO ", "ID inexistente!\n", "Acesse a lista de livros", 
+     "para consultar o id do livro desejado.\n\n"]
 ]
 
 
@@ -45,19 +48,7 @@ list_input_screen = [
      " " * 4 + "> _"],
     [SPACING_EQUAL_SIGN, SPACING + "Digite sua opção abaixo: \n", 
      SPACING + "> _"],
-
 ]
-
-
-def message_of_invalid_input():
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print(" " * 4 + f"{' ERRO ':=^40}\n")
-    print(f"{'ID inexistente!':^48}\n")
-    print(f"{'Acesse a lista de livros':^48}")
-    print(f"{'para consultar o id do livro desejado.':^48}\n\n")
-    print('\tPressione [ENTER] para retornar ao menu')
-    print(" " * 4 + "=" * 40)
-    input()
 
 
 def default_screen(value_screen, value_input):
@@ -67,6 +58,8 @@ def default_screen(value_screen, value_input):
             print(SPACING + f"{list_screen[value_screen][i]:=^40}\n\n")
         elif value_screen == 4:
             print(list_screen[value_screen][i])
+        elif value_screen == 6:
+            print(f"{list_screen[value_screen][i]:^48}")
         else:
             print(f"{list_screen[value_screen][i]:^48}\n\n")
     
@@ -129,11 +122,13 @@ def get_id(max_id):
     choice = input()
 
     if not choice.isdigit():
-        message_of_invalid_input()
+        default_screen(Type_screen.INVALID_INPUT.value, Type_input.ENTER.value)
+        input()
         return 
     
     if not 0 <= int(choice) < int(max_id):
-        message_of_invalid_input()
+        default_screen(Type_screen.INVALID_INPUT.value, Type_input.ENTER.value)
+        input()
         return
 
     return choice
