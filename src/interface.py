@@ -23,19 +23,6 @@ def start_screen():
     print(SPACING + "> _", end="")
 
 
-def get_input():
-    while True:
-        choice = input()
-        match choice:
-            case "1" | "2" | "3" | "4" | "5":
-                return choice
-            case _:
-                default_screen(Type_screen.INVALID.value, Type_input.ENTER.value)
-                input()
-                start_screen()
-                continue
-
-
 def default_screen(value_screen, value_input):
     os.system('cls' if os.name == 'nt' else 'clear')
     for i in range(len(list_screen[value_screen])):
@@ -71,7 +58,7 @@ list_screen = [
 
 
 list_input_screen = [
-    ["\tPressione [ENTER] para retornar", SPACING_EQUAL_SIGN],
+    ["\tPressione [ENTER] para retornar\n", SPACING_EQUAL_SIGN],
     [f"{'Preencha os dados abaixo.':^48}\n", SPACING_MINUS_SIGN],
     [f"{'Obrigado por usar o sistema!':^48}\n\n", SPACING_EQUAL_SIGN],
     [SPACING + "(Pressione [ENTER] para retornar)\n", SPACING_EQUAL_SIGN, " " * 4 + "> _"]

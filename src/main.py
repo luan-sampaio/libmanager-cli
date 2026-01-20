@@ -8,7 +8,7 @@ def main():
 
     while True:
         interface.start_screen()
-        options = interface.get_input()
+        options = input()
         match options:
             case "1":
                 interface.default_screen(Type_screen.INSERT.value, Type_input.FILL.value)
@@ -26,6 +26,9 @@ def main():
             case "5":
                 interface.default_screen(Type_screen.EXIT.value, Type_input.EXIT.value)
                 break
+            case _:
+                interface.default_screen(Type_screen.INVALID.value, Type_input.ENTER.value)
+                input()
 
 
 main()
