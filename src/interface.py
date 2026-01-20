@@ -27,35 +27,42 @@ def get_input():
             case "1" | "2" | "3" | "4" | "5":
                 return choice
             case _:
-                default_screen(list_screen[Type.INVALID.value])
+                default_screen(Type.INVALID.value)
                 input()
                 start_screen()
                 continue
 
 
-def default_screen(type):
+def default_screen(value):
     os.system('cls' if os.name == 'nt' else 'clear')
-    for i in range(len(type)):
+    for i in range(len(list_screen[value])):
         if i == 0:
-            print(SPACING + f"{type[i]:=^40}\n\n")
+            print(SPACING + f"{list_screen[value][i]:=^40}\n\n")
         else:
-            print(f"{type[i]:^48}\n\n")
+            print(f"{list_screen[value][i]:^48}\n\n")
     
-    screen_press_enter()    
+    for option in list_input_screen[value]:
+        print(option)
         
-
-
-class Type(Enum):
-    INVALID = 0
-
-list_screen = [
-    [' ERRO ', 'Opção inválida!']
-]
-
 
 def screen_press_enter():
     print("\tPressione [ENTER] para retornar")
     print(SPACING + "=" * 40)
+
+
+class Type(Enum):
+    INVALID = 0
+    INSERT = 1
+    ENTER = 2
+
+list_screen = [
+    [" ERRO ", "Opção inválida!"],
+    [" CADASTRO ", "Preencha os dados abaixo."]
+]
+
+list_input_screen = [
+    ["\tPressione [ENTER] para retornar", SPACING + "=" * 40]
+]
 
 
 def insert_book_screen():
