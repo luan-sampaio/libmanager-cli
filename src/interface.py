@@ -4,8 +4,9 @@ import database
 from enum import Enum
 
 SPACING = " " * 4
-SPACING_EQUAL_SIGN = " " * 4 + "=" * 40
-SPACING_MINUS_SIGN = " " * 4 + "-" * 40
+SPACING_EQUAL_SIGN = " " * 4 + "=" * 40 + "\n"
+SPACING_MINUS_SIGN = " " * 4 + "-" * 40 + "\n"
+
 
 def start_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -44,33 +45,47 @@ def default_screen(value_screen, value_input):
             print(f"{list_screen[value_screen][i]:^48}\n\n")
     
     for option in list_input_screen[value_input]:
-        print(option)
+        print(option, end="")
         
 
 class Type_screen(Enum):
     INVALID = 0
     INSERT = 1
     EXIT = 2
+    EDIT = 3
 
 
 class Type_input(Enum):
     ENTER = 0
     FILL = 1
     EXIT = 2
+    EDIT = 3
 
 
 list_screen = [
     [" ERRO ", "Opção inválida!"],
     [" CADASTRO "],
     [""],
+    [" EDIÇÃO ", "Digite o ID do livro que deseja editar!"],
 ]
+
 
 list_input_screen = [
     ["\tPressione [ENTER] para retornar", SPACING_EQUAL_SIGN],
     [f"{'Preencha os dados abaixo.':^48}\n", SPACING_MINUS_SIGN],
-    [f"{'Obrigado por usar o sistema!':^48}\n\n", SPACING_EQUAL_SIGN]
+    [f"{'Obrigado por usar o sistema!':^48}\n\n", SPACING_EQUAL_SIGN],
+    [SPACING + "(Pressione [ENTER] para retornar)\n", SPACING_EQUAL_SIGN, " " * 4 + "> _"]
+
 ]
 
+
+def screen_edit_book():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(" " * 4 + f"{' EDIÇÃO ':=^40}\n\n")
+    print(f"{'Digite o ID do livro que deseja editar!':^48}\n")
+    print(" " * 4 + "(Pressione [ENTER] para retornar)")
+    print(" " * 4 + "=" * 40)
+    print(" " * 4 + "> _", end="")
 
 def display_sucess_message(id):
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -155,14 +170,6 @@ def get_id(max_id):
         return
 
     return choice
-
-def screen_edit_book():
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print(" " * 4 + f"{' EDIÇÃO ':=^40}\n\n")
-    print(f"{'Digite o ID do livro que deseja editar!':^48}\n")
-    print(" " * 4 + "(Pressione [ENTER] para retornar)")
-    print(" " * 4 + "=" * 40)
-    print(" " * 4 + "> _", end="")
 
 
 def screen_of_empty_list():

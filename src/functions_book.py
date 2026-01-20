@@ -1,6 +1,7 @@
 import os
 import interface
 import database
+from interface import Type_screen, Type_input
 
 def add_book(): 
     print(" " * 4 + "(Pressione [ENTER] para retornar)")
@@ -71,7 +72,7 @@ def edit_book(max_id):
         interface.screen_of_empty_list()
         return 
 
-    interface.screen_edit_book()
+    interface.default_screen(Type_screen.EDIT.value, Type_input.EDIT.value)
     choice = interface.get_id(max_id)
     if not choice:
         return 
