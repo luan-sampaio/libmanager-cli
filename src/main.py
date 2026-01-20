@@ -7,7 +7,7 @@ def main():
     book_id = 0
 
     while True:
-        interface.start_screen()
+        interface.default_screen(Type_screen.START.value, Type_input.START.value)
         options = input()
         match options:
             case "1":

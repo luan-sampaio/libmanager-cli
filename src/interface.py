@@ -8,38 +8,12 @@ SPACING_EQUAL_SIGN = " " * 4 + "=" * 40 + "\n"
 SPACING_MINUS_SIGN = " " * 4 + "-" * 40 + "\n"
 
 
-def start_screen():
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print(f"{'LIBMANAGER v1.0':^48}")
-    print(" " * 4 + "=" * 40 + "\n")
-    print("\tEscolha uma opção:\n")
-    print("\t[1] Cadastrar livro")
-    print("\t[2] Editar livro")
-    print("\t[3] Excluir livro")
-    print("\t[4] Visualizar livros")
-    print("\t[5] Sair do programa\n")
-    print(SPACING + "=" * 40)
-    print(SPACING + "Digite sua opção abaixo: ")
-    print(SPACING + "> _", end="")
-
-
-def default_screen(value_screen, value_input):
-    os.system('cls' if os.name == 'nt' else 'clear')
-    for i in range(len(list_screen[value_screen])):
-        if i == 0:
-            print(SPACING + f"{list_screen[value_screen][i]:=^40}\n\n")
-        else:
-            print(f"{list_screen[value_screen][i]:^48}\n\n")
-    
-    for option in list_input_screen[value_input]:
-        print(option, end="")
-        
-
 class Type_screen(Enum):
     INVALID = 0
     INSERT = 1
     EXIT = 2
     EDIT = 3
+    START = 4
 
 
 class Type_input(Enum):
@@ -47,6 +21,7 @@ class Type_input(Enum):
     FILL = 1
     EXIT = 2
     EDIT = 3
+    START = 4
 
 
 list_screen = [
@@ -54,6 +29,9 @@ list_screen = [
     [" CADASTRO "],
     [""],
     [" EDIÇÃO ", "Digite o ID do livro que deseja editar!"],
+    [" LIBMANAGER v1.0 ", "\tEscolha uma opção:\n", "\t[1] Cadastrar livro", 
+     "\t[2] Editar livro", "\t[3] Excluir livro", "\t[4] Visualizar livros",
+     "\t[5] Sair do programa\n"],
 ]
 
 
@@ -61,10 +39,27 @@ list_input_screen = [
     ["\tPressione [ENTER] para retornar\n", SPACING_EQUAL_SIGN],
     [f"{'Preencha os dados abaixo.':^48}\n", SPACING_MINUS_SIGN],
     [f"{'Obrigado por usar o sistema!':^48}\n\n", SPACING_EQUAL_SIGN],
-    [SPACING + "(Pressione [ENTER] para retornar)\n", SPACING_EQUAL_SIGN, " " * 4 + "> _"]
+    [SPACING + "(Pressione [ENTER] para retornar)\n", SPACING_EQUAL_SIGN, 
+     " " * 4 + "> _"],
+    [SPACING_EQUAL_SIGN, SPACING + "Digite sua opção abaixo: \n", 
+     SPACING + "> _"],
 
 ]
 
+
+def default_screen(value_screen, value_input):
+    os.system('cls' if os.name == 'nt' else 'clear')
+    for i in range(len(list_screen[value_screen])):
+        if i == 0:
+            print(SPACING + f"{list_screen[value_screen][i]:=^40}\n\n")
+        elif value_screen == 4:
+            print(list_screen[value_screen][i])
+        else:
+            print(f"{list_screen[value_screen][i]:^48}\n\n")
+    
+    for option in list_input_screen[value_input]:
+        print(option, end="")
+        
 
 def screen_edit_book():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -73,6 +68,7 @@ def screen_edit_book():
     print(" " * 4 + "(Pressione [ENTER] para retornar)")
     print(" " * 4 + "=" * 40)
     print(" " * 4 + "> _", end="")
+
 
 def display_sucess_message(id):
     os.system('cls' if os.name == 'nt' else 'clear')
