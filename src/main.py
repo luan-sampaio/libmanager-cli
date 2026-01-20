@@ -1,6 +1,6 @@
-import os
 import interface
 import functions_book
+from interface import Type_screen, Type_input
 
 
 def main():
@@ -11,7 +11,7 @@ def main():
         options = interface.get_input()
         match options:
             case "1":
-                interface.insert_book_screen()
+                interface.default_screen(Type_screen.INSERT.value, Type_input.FILL.value)
                 if functions_book.add_book():
                     interface.display_sucess_message(book_id)
                     book_id += 1

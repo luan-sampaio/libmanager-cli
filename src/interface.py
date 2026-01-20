@@ -56,6 +56,7 @@ class Type_screen(Enum):
 
 class Type_input(Enum):
     ENTER = 0
+    FILL = 1
 
 
 list_screen = [
@@ -65,15 +66,8 @@ list_screen = [
 
 list_input_screen = [
     ["\tPressione [ENTER] para retornar", SPACING + "=" * 40],
-    ["Preencha os dados abaixo.", SPACING + "-" * 40],
+    [f"{'Preencha os dados abaixo.':^48}\n", SPACING + "-" * 40],
 ]
-
-
-def insert_book_screen():
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print(" " * 4 + f"{' CADASTRO ':=^40}\n\n")
-    print(f"{'Preencha os dados abaixo.':^48}\n\n")
-    print(" " * 4 + "-" * 40)
 
 
 def display_sucess_message(id):
