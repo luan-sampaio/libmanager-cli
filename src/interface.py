@@ -15,9 +15,9 @@ def start_screen():
     print("\t[3] Excluir livro")
     print("\t[4] Visualizar livros")
     print("\t[5] Sair do programa\n")
-    print(" " * 4 + "=" * 40)
-    print(" " * 4 + "Digite sua opção abaixo: ")
-    print(" " * 4 + "> _", end="")
+    print(SPACING + "=" * 40)
+    print(SPACING + "Digite sua opção abaixo: ")
+    print(SPACING + "> _", end="")
 
 
 def get_input():
