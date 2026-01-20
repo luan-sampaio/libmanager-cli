@@ -14,6 +14,7 @@ class Type_screen(Enum):
     EXIT = 2
     EDIT = 3
     START = 4
+    DELETE = 5
 
 
 class Type_input(Enum):
@@ -32,6 +33,7 @@ list_screen = [
     [" LIBMANAGER v1.0 ", "\tEscolha uma opção:\n", "\t[1] Cadastrar livro", 
      "\t[2] Editar livro", "\t[3] Excluir livro", "\t[4] Visualizar livros",
      "\t[5] Sair do programa\n"],
+    [" EXCLUIR ", "Digite o ID do livro que deseja excluir!"]
 ]
 
 
@@ -45,6 +47,17 @@ list_input_screen = [
      SPACING + "> _"],
 
 ]
+
+
+def message_of_invalid_input():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(" " * 4 + f"{' ERRO ':=^40}\n")
+    print(f"{'ID inexistente!':^48}\n")
+    print(f"{'Acesse a lista de livros':^48}")
+    print(f"{'para consultar o id do livro desejado.':^48}\n\n")
+    print('\tPressione [ENTER] para retornar ao menu')
+    print(" " * 4 + "=" * 40)
+    input()
 
 
 def default_screen(value_screen, value_input):
@@ -61,15 +74,6 @@ def default_screen(value_screen, value_input):
         print(option, end="")
         
 
-def screen_edit_book():
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print(" " * 4 + f"{' EDIÇÃO ':=^40}\n\n")
-    print(f"{'Digite o ID do livro que deseja editar!':^48}\n")
-    print(" " * 4 + "(Pressione [ENTER] para retornar)")
-    print(" " * 4 + "=" * 40)
-    print(" " * 4 + "> _", end="")
-
-
 def display_sucess_message(id):
     os.system('cls' if os.name == 'nt' else 'clear')
     print(" " * 4 + f"{' CADASTRO ':=^40}")
@@ -83,26 +87,6 @@ def display_sucess_message(id):
     print(f"{'Livro Cadastrado com sucesso!':^48}")
     print("\n")
     print(" " * 4 + "Pressione [ENTER] para retornar ao menu.")
-    print(" " * 4 + "=" * 40)
-    input()
-
-
-def delete_book_screen():
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print(" " * 4 + f"{' EXCLUIR ':=^40}\n\n")
-    print(f"{'Digite o ID do livro que deseja excluir!':^48}\n")
-    print(" " * 4 + "(Pressione [ENTER] para retornar)")
-    print(" " * 4 + "=" * 40)
-    print(" " * 4 + "> _", end="")
-
-
-def message_of_invalid_input():
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print(" " * 4 + f"{' ERRO ':=^40}\n")
-    print(f"{'ID inexistente!':^48}\n")
-    print(f"{'Acesse a lista de livros':^48}")
-    print(f"{'para consultar o id do livro desejado.':^48}\n\n")
-    print('\tPressione [ENTER] para retornar ao menu')
     print(" " * 4 + "=" * 40)
     input()
 

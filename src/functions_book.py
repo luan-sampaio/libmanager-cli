@@ -54,7 +54,8 @@ def delete_book(max_id):
         interface.screen_of_empty_list()
         return 
     
-    interface.delete_book_screen()    
+    interface.default_screen(Type_screen.DELETE.value, Type_input.EDIT.value)
+
     choice = interface.get_id(max_id)
     if not choice:
         return 
