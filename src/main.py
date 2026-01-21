@@ -37,7 +37,8 @@ def main():
                     book_id -= 1
 
             case "4":
-                if functions_book.view_books():
+                if functions_book.verify_list_books():
+                    functions_book.view_books()
                     interface.default_screen_input(Type_input.ENTER.value)
                     input()
                 else:

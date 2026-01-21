@@ -10,12 +10,8 @@ def add_book(book):
 
 def view_books():
     list_of_books = database.show_list_of_books()
-    if not list_of_books:
-        return False
-
     interface.default_screen(Type_screen.VIEW.value)
     interface.show_list_books(list_of_books)
-    return True
 
 
 def verify_list_books():
