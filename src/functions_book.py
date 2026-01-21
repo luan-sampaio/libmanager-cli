@@ -11,28 +11,12 @@ def add_book(book):
 def view_books():
     list_of_books = database.show_list_of_books()
     if not list_of_books:
-        interface.default_screen(Type_screen.EMPTY.value)
-        interface.default_screen_input(Type_input.ENTER.value)
-        input()
-        return 
+        return False
 
-    os.system('cls' if os.name == 'nt' else 'clear')
+    interface.default_screen(Type_screen.VIEW.value)
+    interface.show_list_books(list_of_books)
+    return True
 
-    count = 0
-    print(" " * 4 + f"{' CONSULTA ':=^40}")
-    print("\n\n")
-    print(" " * 4 + f"{'ID':<4}{'TÍTULO':<19}{'AUTOR':<15}{'ANO'}")
-    print(" " * 4 + "-" * 40)
-    
-    for book in list_of_books:
-        print(" " * 4 +  f"{count:<4}{book.get('title'):<19}{book.get('author'):<15}{book.get('date')}")
-        count += 1
-    
-    print("\n\n")
-    print(" " * 4 + "Pressione [ENTER] para retornar ao menu.")
-    print(" " * 4 + "=" * 40)
-    input()
-    
 
 def delete_book(max_id):
     list_of_books = database.show_list_of_books()

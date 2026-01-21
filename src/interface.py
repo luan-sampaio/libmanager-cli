@@ -19,6 +19,7 @@ class Type_screen(Enum):
     DELETE_SUCESS = 8
     REGISTER = 9
     CONFIRM_DELETE = 10
+    VIEW = 11
 
 
 list_screen = [
@@ -35,7 +36,9 @@ list_screen = [
     [" LISTA VAZIA ", "Não existe livros cadastrados no momento!"],
     ["", "Livro deletado com sucesso!"],
     [" CADASTRO ", "Livro Cadastrado com sucesso!"],
-    [" EXCLUIR ", "ATENÇÃO: Esta ação não pode ser defesfeita!"]
+    [" EXCLUIR ", "ATENÇÃO: Esta ação não pode ser defesfeita!"],
+    [" CONSULTA ", SPACING + f"{'ID':<4}{'TÍTULO':<19}{'AUTOR':<15}{'ANO'}",
+     SPACING_MINUS_SIGN]
 ]
 
 
@@ -89,7 +92,7 @@ def default_screen(value_screen):
     for i in range(len(list_screen[value_screen])):
         if i == 0:
             print(SPACING + f"{list_screen[value_screen][i]:=^40}\n\n")
-        elif value_screen == 4:
+        elif value_screen == 4 or value_screen == 11:
             print(list_screen[value_screen][i])
         elif value_screen == 6:
             print(f"{list_screen[value_screen][i]:^48}")
@@ -138,7 +141,16 @@ def get_book():
     #if not date
           # Fazer uma informando que não preencheu as informações
         # Deveria fazer uma função para validar o date? colocar no utils.py
+        # regras de negócio deve ser no functions_ essas verificações deveria ir
+        # lá em 
     
     book = {"title": title, "author": author, "date": date} 
     return book
 
+
+def show_list_books(list_books):
+    count = 0
+    for book in list_books:
+        print(SPACING +  f"{count:<4}{book.get('title'):<19}{book.get('author'):<15}{book.get('date')}")
+        count += 1
+    print("\n")

@@ -27,7 +27,13 @@ def main():
                 if book_id > 0:
                     book_id -= 1
             case "4":
-                functions_book.view_books()
+                if functions_book.view_books():
+                    interface.default_screen_input(Type_input.ENTER.value)
+                    input()
+                else:
+                    interface.default_screen(Type_screen.EMPTY.value)
+                    interface.default_screen_input(Type_input.ENTER.value)
+                    input()
             case "5":
                 interface.default_screen(Type_screen.EXIT.value)
                 interface.default_screen_input(Type_input.EXIT.value)
