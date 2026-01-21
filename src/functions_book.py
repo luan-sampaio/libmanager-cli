@@ -5,6 +5,9 @@ from interface import Type_screen, Type_input
 
 def add_book(book): 
     database.save_book(book)
+    interface.default_screen(Type_screen.REGISTER.value)
+    interface.default_screen_input( Type_input.ENTER.value)
+    input()
     return True
 
 
