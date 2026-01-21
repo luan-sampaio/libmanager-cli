@@ -20,6 +20,8 @@ class Type_screen(Enum):
     REGISTER = 9
     CONFIRM_DELETE = 10
     VIEW = 11
+    EDIT_BOOK = 12
+    EDIT_OK = 13
 
 
 list_screen = [
@@ -38,7 +40,9 @@ list_screen = [
     [" CADASTRO ", "Livro Cadastrado com sucesso!"],
     [" EXCLUIR ", "ATENÇÃO: Esta ação não pode ser defesfeita!"],
     [" CONSULTA ", SPACING + f"{'ID':<4}{'TÍTULO':<19}{'AUTOR':<15}{'ANO'}",
-     SPACING_MINUS_SIGN]
+     SPACING_MINUS_SIGN],
+    [" EDIÇÃO "],
+    ["", f"{'Livro editado com sucesso!':^48}"]
 ]
 
 
@@ -49,6 +53,7 @@ class Type_input(Enum):
     EDIT = 3
     START = 4
     EXCLUDE = 5
+    EDIT_BOOK = 6
 
 
 list_input_screen = [
@@ -60,7 +65,8 @@ list_input_screen = [
     [SPACING_EQUAL_SIGN, SPACING + "Digite sua opção abaixo: \n", 
      SPACING + "> _"],
     [SPACING_EQUAL_SIGN, SPACING + "> Para confirmar, digite 'DELETAR' ou ", SPACING +
-     "pressione [ENTER] para retornar ao ", SPACING + "MENU: _"]
+     "pressione [ENTER] para retornar ao ", SPACING + "MENU: _"],
+    [f"{'Se não for alterar, pressione [ENTER]':^48}", "\n", SPACING_MINUS_SIGN]
 ]
 
 
@@ -164,3 +170,16 @@ def checks_delete():
         return True
     else:
         return False
+
+
+def show_book(id, books):
+    print(SPACING + "Título: " + f"{books[id].get('title')}")
+    print(SPACING + "Autor: " + f"{books[id].get('author')}")
+    print(SPACING + "Data: " + f"{books[id].get('date')}\n\n")
+
+
+def get_field_book():
+    title = input(SPACING + "Digite o título: ")
+    author = input(SPACING + "Digite o autor: ")
+    date = input(SPACING + "Digite o ano: ")
+    return {"title": title, "author": author, "date": date}

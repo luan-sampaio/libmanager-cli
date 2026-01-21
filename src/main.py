@@ -20,7 +20,12 @@ def main():
                     book_id += 1
 
             case "2":
-                functions_book.edit_book(book_id)
+                if functions_book.verify_list_books():
+                    functions_book.edit_book(book_id)
+                else:
+                    interface.default_screen(Type_screen.EMPTY.value)
+                    interface.default_screen_input(Type_input.ENTER.value)
+                    input()
 
             case "3":
                 if functions_book.verify_list_books():
