@@ -115,12 +115,14 @@ def get_id(max_id):
     choice = input()
 
     if not choice.isdigit():
-        default_screen(Type_screen.INVALID_INPUT.value, Type_input.ENTER.value)
+        default_screen(Type_screen.INVALID.value)
+        default_screen_input(Type_input.ENTER.value)
         input()
         return 
     
     if not 0 <= int(choice) < int(max_id):
-        default_screen(Type_screen.INVALID_INPUT.value, Type_input.ENTER.value)
+        default_screen(Type_screen.INVALID.value)
+        default_screen_input(Type_input.ENTER.value)
         input()
         return
 
@@ -154,3 +156,11 @@ def show_list_books(list_books):
         print(SPACING +  f"{count:<4}{book.get('title'):<19}{book.get('author'):<15}{book.get('date')}")
         count += 1
     print("\n")
+
+
+def checks_delete():
+    checks = input()
+    if checks == "DELETE":
+        return True
+    else:
+        return False

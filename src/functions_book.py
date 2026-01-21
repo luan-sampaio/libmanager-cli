@@ -18,33 +18,23 @@ def view_books():
     return True
 
 
-def delete_book(max_id):
+def verify_list_books():
     list_of_books = database.show_list_of_books()
     if not len(list_of_books):
-        interface.default_screen(Type_screen.EMPTY.value)
-        interface.default_screen_input(Type_input.ENTER.value)
-        input()
+        return False
+    return True
+
+
+def delete_book(max_id):
+    delete = input()
+    if not interface.checks_delete():
         return 
     
-    interface.default_screen(Type_screen.DELETE.value)
-    interface.default_screen_input(Type_input.EDIT.value)
-
-    choice = interface.get_id(max_id)
-    if not choice:
-        return 
     
-    interface.default_screen(Type_screen.CONFIRM_DELETE.value)
-    interface.default_screen_input(Type_input.EXCLUDE.value)
-    
-    #interface.show_book_to_delete(int(choice))
-    input()
-
    # if interface.confirm_deletion(int(choice), list_of_books):
     #    list_of_books.pop(int(choice))
      #   interface.default_screen(Type_screen.DELETE_SUCESS.value, Type_input.ENTER.value)
       #  input()
-    return 
-
 
 def edit_book(max_id):
     list_of_books = database.show_list_of_books()
