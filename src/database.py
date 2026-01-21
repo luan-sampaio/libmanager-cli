@@ -7,3 +7,9 @@ def save_book(book):
 
 def show_list_of_books():
     return list_of_books
+
+
+def remove_book(id):
+    list_of_books.pop(int(id))
+
+

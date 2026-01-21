@@ -160,7 +160,7 @@ def show_list_books(list_books):
 
 def checks_delete():
     checks = input()
-    if checks == "DELETE":
+    if checks == "DELETAR":
         return True
     else:
         return False
