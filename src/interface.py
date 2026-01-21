@@ -50,7 +50,7 @@ class Type_input(Enum):
 
 list_input_screen = [
     ["\tPressione [ENTER] para retornar\n", SPACING_EQUAL_SIGN],
-    [f"{'Preencha os dados abaixo.':^48}\n", SPACING_MINUS_SIGN],
+    [f"{'Preencha os dados abaixo.':^48}\n\n\n", f"{'Pressione [ENTER] para retornar':^48}\n", SPACING_MINUS_SIGN],
     [f"{'Obrigado por usar o sistema!':^48}\n\n", SPACING_EQUAL_SIGN],
     [SPACING + "(Pressione [ENTER] para retornar)\n", SPACING_EQUAL_SIGN, 
       SPACING + "> _"], 
@@ -122,3 +122,23 @@ def get_id(max_id):
         return
 
     return choice
+
+
+def get_book():
+    title = input(" " * 4 + "Insira o título do livro: ",)
+    if not title:
+        return
+
+    author = input(" " * 4 + "Insira o nome do autor: ")  
+    #if not author:
+        # Fazer uma informando que não preencheu as informações
+        #   
+    
+    date = input(" " * 4 + "Insira o ano de lançamento do livro: ")
+    #if not date
+          # Fazer uma informando que não preencheu as informações
+        # Deveria fazer uma função para validar o date? colocar no utils.py
+    
+    book = {"title": title, "author": author, "date": date} 
+    return book
+

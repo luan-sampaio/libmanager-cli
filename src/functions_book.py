@@ -3,24 +3,8 @@ import interface
 import database
 from interface import Type_screen, Type_input
 
-def add_book(): 
-    print(" " * 4 + "(Pressione [ENTER] para retornar)")
-
-    title = input(" " * 4 + "Insira o título do livro: ",)
-    if not title:
-        return False
-
-    author = input(" " * 4 + "Insira o nome do autor: ")    
-
-    while True:
-        date = input(" " * 4 + "Insira o ano de lançamento do livro: ")
-        if date.isdigit():
-            break
-            
-
-    book = {"title": title, "author": author, "date": date}
+def add_book(book): 
     database.save_book(book)
-
     return True
 
 
