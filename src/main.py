@@ -7,13 +7,16 @@ def main():
     book_id = 0
 
     while True:
-        interface.default_screen(Type_screen.START.value, Type_input.START.value)
+        interface.default_screen(Type_screen.START.value)
+        interface.default_screen_input(Type_input.START.value)
         options = input()
         match options:
             case "1":
-                interface.default_screen(Type_screen.INSERT.value, Type_input.FILL.value)
+                interface.default_screen(Type_screen.INSERT.value)
+                interface.default_screen_input(Type_input.FILL.value)
                 if functions_book.add_book():
-                    interface.default_screen(Type_screen.REGISTER.value, Type_input.ENTER.value)
+                    interface.default_screen(Type_screen.REGISTER.value)
+                    interface.default_screen_input( Type_input.ENTER.value)
                     input()
                     book_id += 1
             case "2":
@@ -25,10 +28,12 @@ def main():
             case "4":
                 functions_book.view_books()
             case "5":
-                interface.default_screen(Type_screen.EXIT.value, Type_input.EXIT.value)
+                interface.default_screen(Type_screen.EXIT.value)
+                interface.default_screen_input(Type_input.EXIT.value)
                 break
             case _:
-                interface.default_screen(Type_screen.INVALID.value, Type_input.ENTER.value)
+                interface.default_screen(Type_screen.INVALID.value)
+                interface.default_screen_input(Type_input.ENTER.value)
                 input()
 
 

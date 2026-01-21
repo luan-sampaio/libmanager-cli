@@ -27,7 +27,8 @@ def add_book():
 def view_books():
     list_of_books = database.show_list_of_books()
     if not list_of_books:
-        interface.default_screen(Type_screen.EMPTY.value, Type_input.ENTER.value)
+        interface.default_screen(Type_screen.EMPTY.value)
+        interface.default_screen_input(Type_input.ENTER.value)
         input()
         return 
 
@@ -52,17 +53,21 @@ def view_books():
 def delete_book(max_id):
     list_of_books = database.show_list_of_books()
     if not len(list_of_books):
-        interface.default_screen(Type_screen.EMPTY.value, Type_input.ENTER.value)
+        interface.default_screen(Type_screen.EMPTY.value)
+        interface.default_screen_input(Type_input.ENTER.value)
         input()
         return 
     
-    interface.default_screen(Type_screen.DELETE.value, Type_input.EDIT.value)
+    interface.default_screen(Type_screen.DELETE.value)
+    interface.default_screen_input(Type_input.EDIT.value)
 
     choice = interface.get_id(max_id)
     if not choice:
         return 
     
-    interface.default_screen(Type_screen.CONFIRM_DELETE.value, Type_input.EXCLUDE.value)
+    interface.default_screen(Type_screen.CONFIRM_DELETE.value)
+    interface.default_screen_input(Type_input.EXCLUDE.value)
+    
     #interface.show_book_to_delete(int(choice))
     input()
 
@@ -76,11 +81,14 @@ def delete_book(max_id):
 def edit_book(max_id):
     list_of_books = database.show_list_of_books()
     if not len(list_of_books):
-        interface.default_screen(Type_screen.EMPTY.value, Type_input.ENTER.value)
+        interface.default_screen(Type_screen.EMPTY.value)
+        interface.default_screen_input(Type_input.ENTER.value)
         input()
         return 
 
-    interface.default_screen(Type_screen.EDIT.value, Type_input.EDIT.value)
+    interface.default_screen(Type_screen.EDIT.value)
+    interface.default_screen_input(Type_input.EDIT.value)
+
     choice = interface.get_id(max_id)
     if not choice:
         return 
