@@ -7,6 +7,9 @@ AMOUNT_ATTRIBUTES_BOOK = 3
 
 
 def add_book(book): 
+    if not checks_empty_title(book):
+        return
+
     database.save_book(book)
     interface.default_screen(Type_screen.REGISTER.value)
     interface.default_screen_input( Type_input.ENTER.value)
@@ -86,9 +89,17 @@ def edit_book():
 def checks_book(book):
     count_empty = 0
     for value in book.values():
-        if not value:
+       if not value:
             count_empty += 1
     
     if count_empty == AMOUNT_ATTRIBUTES_BOOK:
         return False
+    return True
+
+
+def checks_empty_title(book):
+    try:
+        book.get("title")
+    except AttributeError:
+        return False    
     return True

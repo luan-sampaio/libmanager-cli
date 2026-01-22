@@ -16,7 +16,7 @@ def main():
                 interface.default_screen(Type_screen.INSERT.value)
                 interface.default_screen_input(Type_input.FILL.value)
                 book = interface.get_book()
-                functions_book.add_book(book):
+                functions_book.add_book(book)
 
             case "2":
                 if functions_book.verify_list_books():
