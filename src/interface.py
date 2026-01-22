@@ -23,6 +23,7 @@ class Type_screen(Enum):
     VIEW = 11
     EDIT_BOOK = 12
     EDIT_OK = 13
+    N_EDIT = 14
 
 
 list_screen = [
@@ -43,7 +44,9 @@ list_screen = [
     [" CONSULTA ", SPACING + f"{'ID':<4}{'TÍTULO':<19}{'AUTOR':<15}{'ANO'}",
      SPACING_MINUS_SIGN],
     [" EDIÇÃO "],
-    ["", f"{'Livro editado com sucesso!':^48}"]
+    ["", f"{'Livro editado com sucesso!':^48}"],
+    ["", f"{'Não houve preenchimento dos campos.':^48}", 
+     f"{'Logo não houve Edição no livro!':^48}"]
 ]
 
 

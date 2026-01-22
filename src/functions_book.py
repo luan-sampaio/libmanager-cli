@@ -3,6 +3,8 @@ import interface
 import database
 from interface import Type_screen, Type_input
 
+AMOUNT_ATTRIBUTES_BOOK = 3
+
 
 def add_book(book): 
     database.save_book(book)
@@ -60,8 +62,25 @@ def edit_book(max_id):
     interface.default_screen_input(Type_input.EDIT_BOOK.value)
 
     book = interface.get_field_book()
+    if not checks_book(book):
+        interface.default_screen(Type_screen.N_EDIT.value)
+        interface.default_screen_input(Type_input.ENTER.value)  
+        input()      
+        return 
+
     database.edit_book(book, choice)
 
     interface.default_screen(Type_screen.EDIT_OK.value)
     interface.default_screen_input(Type_input.ENTER.value)
     input()
+
+
+def checks_book(book):
+    count_empty = 0
+    for value in book.values():
+        if not value:
+            count_empty += 1
+    
+    if count_empty == AMOUNT_ATTRIBUTES_BOOK:
+        return False
+    return True
