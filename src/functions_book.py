@@ -42,6 +42,9 @@ def delete_book(book_id):
     interface.default_screen_input(Type_input.EXCLUDE.value)
 
     if not interface.checks_delete():
+        interface.default_screen(Type_screen.N_DELETE.value)
+        interface.default_screen_input(Type_input.ENTER.value)
+        input()
         return 
     
     database.remove_book(choice)

@@ -24,6 +24,7 @@ class Type_screen(Enum):
     EDIT_BOOK = 12
     EDIT_OK = 13
     N_EDIT = 14
+    N_DELETE = 15
 
 
 list_screen = [
@@ -46,7 +47,8 @@ list_screen = [
     [" EDIÇÃO "],
     ["", f"{'Livro editado com sucesso!':^48}"],
     ["", 
-     f"{'Não houve Edição no livro!':^48}"]
+     f"{'Não houve Edição no livro!':^48}"],
+    ["", f"{'O Livro NÃO foi excluído!'}"]
 ]
 
 
