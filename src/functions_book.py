@@ -32,7 +32,8 @@ def delete_book(book_id):
     interface.default_screen_input(Type_input.EDIT.value)
 
     choice = interface.get_id(book_id)
-    choice = int(choice)
+    if choice == None:
+        return 
 
     interface.default_screen(Type_screen.CONFIRM_DELETE.value)
     interface.show_book(choice, list_of_books)
@@ -51,8 +52,9 @@ def edit_book(max_id):
     interface.default_screen_input(Type_input.EDIT.value)
 
     choice = interface.get_id(max_id)
+    if choice == None:
+        return 
 
-    choice = int(choice) 
     interface.default_screen(Type_screen.EDIT_BOOK.value)
     interface.show_book(choice, list_of_books)
     interface.default_screen_input(Type_input.EDIT_BOOK.value)
