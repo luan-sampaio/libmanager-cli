@@ -2,6 +2,7 @@ import os
 from database import show_list_of_books
 from enum import Enum
 
+
 SPACING = " " * 4
 SPACING_EQUAL_SIGN = " " * 4 + "=" * 40 + "\n"
 SPACING_MINUS_SIGN = " " * 4 + "-" * 40 + "\n"
@@ -68,29 +69,6 @@ list_input_screen = [
      "pressione [ENTER] para retornar ao ", SPACING + "MENU: _"],
     [f"{'Se não for alterar, pressione [ENTER]':^48}", "\n", SPACING_MINUS_SIGN]
 ]
-
-
-def confirm_deletion(id, books):
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print(" " * 4 + f"{' EXCLUIR ':=^40}\n\n")
-    print(f"{'ATENÇÃO: Esta ação não pode ser defesfeita!':^48}\n")    
-    print(" " * 4 + "=" * 40 + "\n")
-    print(" " * 4 + "Livro: " + books[id].get('title'))
-    print(" " * 4 + "Livro: " + books[id].get('author') + '\n')
-    print(" " * 4 + "> Para confirmar, digite 'DELETAR' ou ")
-    print(" " * 4 + "pressione [ENTER] para retornar ao ")
-    print(" " * 4 + "MENU: _", end="")
-
-    choice = input()
-    if choice == "DELETAR":
-        return True
-    return False
-
-
-def show_book_to_delete(id):
-    list_books = show_list_of_books()
-    print(" " * 4 + "Título: " + list_books[id].get('title'))
-    print(" " * 4 + "Autor: " + list_books[id].get('author') + '\n')
 
 
 def default_screen(value_screen):

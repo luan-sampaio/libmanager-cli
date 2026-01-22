@@ -26,12 +26,16 @@ def verify_list_books():
 
 
 def delete_book(book_id):
+    list_of_books = database.show_list_of_books()
+
     interface.default_screen(Type_screen.DELETE.value)
     interface.default_screen_input(Type_input.EDIT.value)
 
     choice = interface.get_id(book_id)
+    choice = int(choice)
 
     interface.default_screen(Type_screen.CONFIRM_DELETE.value)
+    interface.show_book(choice, list_of_books)
     interface.default_screen_input(Type_input.EXCLUDE.value)
 
     if not interface.checks_delete():
