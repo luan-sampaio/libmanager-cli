@@ -25,6 +25,7 @@ class Type_screen(Enum):
     EDIT_OK = 13
     N_EDIT = 14
     N_DELETE = 15
+    DELETE_BOOK = 16
 
 
 list_screen = [
@@ -48,7 +49,8 @@ list_screen = [
     ["", f"{'Livro editado com sucesso!':^48}"],
     ["", 
      f"{'Não houve Edição no livro!':^48}"],
-    ["", f"{'O Livro NÃO foi excluído!'}"]
+    ["", f"{'O Livro NÃO foi excluído!'}"], 
+    [" EXCLUIR ", f"{'O Livro abaixo foi excluído com sucesso':^48}"]
 ]
 
 
@@ -145,10 +147,10 @@ def checks_delete():
         return False
 
 
-def show_book(id, books):
+def show_book_by_list(id, books):
     print(SPACING + "Título: " + f"{books[id].get('title')}")
     print(SPACING + "Autor: " + f"{books[id].get('author')}")
-    print(SPACING + "Data: " + f"{books[id].get('date')}\n\n")
+    print(SPACING + "Ano: " + f"{books[id].get('date')}\n\n")
 
 
 def get_field_book():
@@ -156,3 +158,9 @@ def get_field_book():
     author = input(SPACING + "Digite o autor: ")
     date = input(SPACING + "Digite o ano: ")
     return {"title": title, "author": author, "date": date}
+
+
+def show_book(book):
+    print(SPACING + "Título: " + f"{book.get('title')}")
+    print(SPACING + "Autor: " + f"{book.get('author')}")
+    print(SPACING + "Ano: " + f"{book.get('date')}\n\n")
