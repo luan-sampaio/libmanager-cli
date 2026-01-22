@@ -119,19 +119,9 @@ def get_book():
         return
 
     author = input(" " * 4 + "Insira o nome do autor: ")  
-    #if not author:
-        # Fazer uma informando que não preencheu as informações
-        #   
-    
     date = input(" " * 4 + "Insira o ano de lançamento do livro: ")
-    #if not date
-          # Fazer uma informando que não preencheu as informações
-        # Deveria fazer uma função para validar o date? colocar no utils.py
-        # regras de negócio deve ser no functions_ essas verificações deveria ir
-        # lá em 
     
-    book = {"title": title, "author": author, "date": date} 
-    return book
+    return {"title": title, "author": author, "date": date}
 
 
 def show_list_books(list_books):

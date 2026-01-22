@@ -52,16 +52,13 @@ def edit_book(max_id):
 
     choice = interface.get_id(max_id)
 
-    choice = int(choice) # fazer com que o próprio get_id lide com a conversão
+    choice = int(choice) 
     interface.default_screen(Type_screen.EDIT_BOOK.value)
     interface.show_book(choice, list_of_books)
     interface.default_screen_input(Type_input.EDIT_BOOK.value)
 
     book = interface.get_field_book()
-    # função para verificar os elementos do livro, 
-    # tipo se tiver tudo vazio
     database.edit_book(book, choice)
-
 
     interface.default_screen(Type_screen.EDIT_OK.value)
     interface.default_screen_input(Type_input.ENTER.value)
