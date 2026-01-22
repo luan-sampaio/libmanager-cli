@@ -1,5 +1,5 @@
 import os
-from database import show_list_of_books
+import utils
 from enum import Enum
 
 
@@ -127,8 +127,8 @@ def get_book():
 
     author = input(" " * 4 + "Insira o nome do autor: ")  
     date = input(" " * 4 + "Insira o ano de lançamento do livro: ")
-    
-    return {"title": title, "author": author, "date": date}
+    id = utils.increase_id()
+    return {"title": title, "author": author, "date": date, "id": id}
 
 
 def show_list_books(list_books):
