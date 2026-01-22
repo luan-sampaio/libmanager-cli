@@ -102,7 +102,7 @@ def default_screen_input(value_input):
             print(option, end="")
 
 
-def get_id(max_id):
+def get_id():
     choice = input()
     
     if not choice.isdigit():
@@ -111,13 +111,15 @@ def get_id(max_id):
         input()
         return None
     
-    if not 0 <= int(choice) < int(max_id):
+    choice = int(choice)
+
+    if not 0 <= choice <= utils.get_actual_id():
         default_screen(Type_screen.INVALID.value)
         default_screen_input(Type_input.ENTER.value)
         input()
         return None
 
-    return int(choice)
+    return choice
 
 
 def get_book():

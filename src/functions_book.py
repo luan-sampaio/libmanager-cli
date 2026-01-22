@@ -11,7 +11,6 @@ def add_book(book):
     interface.default_screen(Type_screen.REGISTER.value)
     interface.default_screen_input( Type_input.ENTER.value)
     input()
-    return True
 
 
 def view_books():
@@ -27,13 +26,13 @@ def verify_list_books():
     return True
 
 
-def delete_book(book_id):
+def delete_book():
     list_of_books = database.show_list_of_books()
 
     interface.default_screen(Type_screen.DELETE.value)
     interface.default_screen_input(Type_input.EDIT.value)
 
-    choice = interface.get_id(book_id)
+    choice = interface.get_id()
     if choice == None:
         return 
 
@@ -56,13 +55,13 @@ def delete_book(book_id):
     input()
 
 
-def edit_book(max_id):
+def edit_book():
     list_of_books = database.show_list_of_books()
 
     interface.default_screen(Type_screen.EDIT.value)
     interface.default_screen_input(Type_input.EDIT.value)
 
-    choice = interface.get_id(max_id)
+    choice = interface.get_id()
     if choice == None:
         return 
 

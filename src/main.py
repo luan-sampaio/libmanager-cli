@@ -16,12 +16,11 @@ def main():
                 interface.default_screen(Type_screen.INSERT.value)
                 interface.default_screen_input(Type_input.FILL.value)
                 book = interface.get_book()
-                if functions_book.add_book(book):
-                    book_id += 1
+                functions_book.add_book(book):
 
             case "2":
                 if functions_book.verify_list_books():
-                    functions_book.edit_book(book_id)
+                    functions_book.edit_book()
                 else:
                     interface.default_screen(Type_screen.EMPTY.value)
                     interface.default_screen_input(Type_input.ENTER.value)
@@ -29,7 +28,7 @@ def main():
 
             case "3":
                 if functions_book.verify_list_books():
-                    functions_book.delete_book(book_id)
+                    functions_book.delete_book()
                 else:
                     interface.default_screen(Type_screen.EMPTY.value)
                     interface.default_screen_input(Type_input.ENTER.value)
