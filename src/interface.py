@@ -45,8 +45,8 @@ list_screen = [
      SPACING_MINUS_SIGN],
     [" EDIÇÃO "],
     ["", f"{'Livro editado com sucesso!':^48}"],
-    ["", f"{'Não houve preenchimento dos campos.':^48}", 
-     f"{'Logo não houve Edição no livro!':^48}"]
+    ["", 
+     f"{'Não houve Edição no livro!':^48}"]
 ]
 
 
