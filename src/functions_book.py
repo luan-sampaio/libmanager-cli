@@ -103,3 +103,4 @@ def checks_empty_title(book):
     except AttributeError:
         return False    
     return True
+

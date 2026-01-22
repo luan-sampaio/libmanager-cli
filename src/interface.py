@@ -123,12 +123,24 @@ def get_id():
 
 
 def get_book():
-    title = input(" " * 4 + "Insira o título do livro: ",)
+    title = input(SPACING + "Insira o título do livro: ",)
     if not title:
         return
 
-    author = input(" " * 4 + "Insira o nome do autor: ")  
-    date = input(" " * 4 + "Insira o ano de lançamento do livro: ")
+    while True:
+        author = input(SPACING + "Insira o nome do autor: ") 
+        if not author:
+            display_fill_info()
+        else:
+            break
+    
+    while True:
+        date = input(SPACING + "Insira o ano de lançamento do livro: ")
+        if not date:
+            display_fill_info()
+        else:
+            break
+
     id = utils.increase_id()
     return {"title": title, "author": author, "date": date, "id": id}
 
@@ -164,3 +176,7 @@ def show_book(book):
     print(SPACING + "Título: " + f"{book.get('title')}")
     print(SPACING + "Autor: " + f"{book.get('author')}")
     print(SPACING + "Ano: " + f"{book.get('date')}\n\n")
+
+
+def display_fill_info():
+    print("\n" + SPACING + "Preencha as informações por favor!")
