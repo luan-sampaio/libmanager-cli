@@ -35,9 +35,6 @@ def main():
                     interface.default_screen_input(Type_input.ENTER.value)
                     input()
 
-                if book_id > 0:
-                    book_id -= 1
-
             case "4":
                 if functions_book.verify_list_books():
                     functions_book.view_books()

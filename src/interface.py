@@ -50,7 +50,7 @@ list_screen = [
     ["", 
      f"{'Não houve Edição no livro!':^48}"],
     ["", f"{'O Livro NÃO foi excluído!'}"], 
-    [" EXCLUIR ", f"{'O Livro abaixo foi excluído com sucesso':^48}"]
+    [" EXCLUIR ", f"{'O Livro abaixo foi excluído com sucesso!':^48}"]
 ]
 
 
@@ -132,10 +132,8 @@ def get_book():
 
 
 def show_list_books(list_books):
-    count = 0
     for book in list_books:
-        print(SPACING +  f"{count:<4}{book.get('title'):<19}{book.get('author'):<15}{book.get('date')}")
-        count += 1
+        print(SPACING +  f"{book.get('id'):<4}{book.get('title'):<19}{book.get('author'):<15}{book.get('date')}")
     print("\n")
 
 
