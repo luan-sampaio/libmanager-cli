@@ -50,9 +50,11 @@ def main():
                 break
 
             case _:
-                interface.default_screen(Type_screen.INVALID.value)
-                interface.default_screen_input(Type_input.ENTER.value)
-                input()
+                #interface.default_screen(Type_screen.INVALID.value)
+                #interface.default_screen_input(Type_input.ENTER.value)
+                interface.display_screen("INVALID")
+                interface.display_input("ENTER")
+                #input()
 
 
 main()

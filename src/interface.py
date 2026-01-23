@@ -6,6 +6,13 @@ from enum import Enum
 SPACING = " " * 4
 SPACING_EQUAL_SIGN = " " * 4 + "=" * 40 + "\n"
 SPACING_MINUS_SIGN = " " * 4 + "-" * 40 + "\n"
+DISPLAY_HEADER = 0
+
+
+screen = {
+    "INVALID": [" ERRO ", "Opção inválida!"],
+    
+}
 
 
 class Type_screen(Enum):
@@ -53,6 +60,10 @@ list_screen = [
     [" EXCLUIR ", f"{'O Livro abaixo foi excluído com sucesso!':^48}"]
 ]
 
+screen_input = {
+    "ENTER": ["\tPressione [ENTER] para retornar\n", SPACING_EQUAL_SIGN],
+
+}
 
 class Type_input(Enum):
     ENTER = 0
@@ -76,6 +87,24 @@ list_input_screen = [
      "pressione [ENTER] para retornar ao ", SPACING + "MENU: _"],
     [f"{'Se não for alterar, pressione [ENTER]':^48}", "\n", SPACING_MINUS_SIGN]
 ]
+
+def display_screen(type):
+    list_screen = screen[type]
+    
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+    for i in range(len(list_screen)):
+        if i == DISPLAY_HEADER:
+            print(SPACING + f"{list_screen[i]:=^40}\n\n")
+        else:
+            print(f"{list_screen[i]:^48}\n\n")
+
+
+def display_input(type):
+    list_screen_input = screen_input[type]
+    for element in list_screen_input:
+        print(element, end="")
+    input()
 
 
 def default_screen(value_screen):
@@ -108,7 +137,6 @@ def get_id():
     if not choice.isdigit():
         default_screen(Type_screen.INVALID.value)
         default_screen_input(Type_input.ENTER.value)
-        input()
         return None
     
     choice = int(choice)

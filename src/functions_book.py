@@ -1,4 +1,3 @@
-import os
 import interface
 import database
 from interface import Type_screen, Type_input
