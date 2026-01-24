@@ -8,10 +8,41 @@ SPACING_EQUAL_SIGN = " " * 4 + "=" * 40 + "\n"
 SPACING_MINUS_SIGN = " " * 4 + "-" * 40 + "\n"
 DISPLAY_HEADER = 0
 
+def default_screen(value_screen):
+    os.system('cls' if os.name == 'nt' else 'clear')
+    for i in range(len(list_screen[value_screen])):
+        if i == 0:
+            print(SPACING + f"{list_screen[value_screen][i]:=^40}\n\n")
+        elif value_screen == 4 or value_screen == 11:
+            print(list_screen[value_screen][i])
+        elif value_screen == 6:
+            print(f"{list_screen[value_screen][i]:^48}")
+        else:
+            print(f"{list_screen[value_screen][i]:^48}\n\n")
+
+def display_screen(type):
+    list_screen = screen[type]
+    
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+    for i in range(len(list_screen)):
+        if i == DISPLAY_HEADER:
+            print(SPACING + f"{list_screen[i]:=^40}\n\n")
+        elif type == "START":
+            print(list_screen[i])
+        else:
+            print(f"{list_screen[i]:^48}\n\n")
+
 
 screen = {
     "INVALID": [" ERRO ", "Opção inválida!"],
-    
+    "INSERT": [" CADASTRO "],
+    "EXIT": [""], 
+    "EDIT": [" EDIÇÃO ", "Digite o ID do livro que deseja editar!"],
+    "START": [" LIBMANAGER v1.0 ", "\tEscolha uma opção:\n", "\t[1] Cadastrar livro", 
+     "\t[2] Editar livro", "\t[3] Excluir livro", "\t[4] Visualizar livros",
+     "\t[5] Sair do programa\n"],
+
 }
 
 
@@ -62,73 +93,34 @@ list_screen = [
 
 screen_input = {
     "ENTER": ["\tPressione [ENTER] para retornar\n", SPACING_EQUAL_SIGN],
-
+    "FILL": [f"{'Preencha os dados abaixo.':^48}\n\n\n",
+    f"{'Pressione [ENTER] para retornar':^48}\n", SPACING_MINUS_SIGN],
+    "EXIT": [f"{'Obrigado por usar o sistema!':^48}\n\n\n", SPACING_EQUAL_SIGN],
+    "EDIT": ["\tPressione [ENTER] para retornar\n", SPACING_EQUAL_SIGN, 
+    SPACING + "> _"], 
+    "START": [SPACING_EQUAL_SIGN, SPACING + "Digite sua opção abaixo: \n", 
+    SPACING + "> _"],
+    "EXCLUDE": [SPACING_EQUAL_SIGN, SPACING + "> Para confirmar, digite 'DELETAR' ou ",
+    SPACING + "pressione [ENTER] para retornar ao ", SPACING + "MENU: _"],
+    "EDIT_BOOK": [f"{'Se não for alterar, pressione [ENTER]':^48}", "\n", SPACING_MINUS_SIGN]
 }
-
-class Type_input(Enum):
-    ENTER = 0
-    FILL = 1
-    EXIT = 2
-    EDIT = 3
-    START = 4
-    EXCLUDE = 5
-    EDIT_BOOK = 6
-
-
-list_input_screen = [
-    ["\tPressione [ENTER] para retornar\n", SPACING_EQUAL_SIGN],
-    [f"{'Preencha os dados abaixo.':^48}\n\n\n", f"{'Pressione [ENTER] para retornar':^48}\n", SPACING_MINUS_SIGN],
-    [f"{'Obrigado por usar o sistema!':^48}\n\n", SPACING_EQUAL_SIGN],
-    [SPACING + "(Pressione [ENTER] para retornar)\n", SPACING_EQUAL_SIGN, 
-      SPACING + "> _"], 
-    [SPACING_EQUAL_SIGN, SPACING + "Digite sua opção abaixo: \n", 
-     SPACING + "> _"],
-    [SPACING_EQUAL_SIGN, SPACING + "> Para confirmar, digite 'DELETAR' ou ", SPACING +
-     "pressione [ENTER] para retornar ao ", SPACING + "MENU: _"],
-    [f"{'Se não for alterar, pressione [ENTER]':^48}", "\n", SPACING_MINUS_SIGN]
-]
-
-def display_screen(type):
-    list_screen = screen[type]
-    
-    os.system('cls' if os.name == 'nt' else 'clear')
-
-    for i in range(len(list_screen)):
-        if i == DISPLAY_HEADER:
-            print(SPACING + f"{list_screen[i]:=^40}\n\n")
-        else:
-            print(f"{list_screen[i]:^48}\n\n")
 
 
 def display_input(type):
     list_screen_input = screen_input[type]
     for element in list_screen_input:
-        print(element, end="")
-    input()
-
-
-def default_screen(value_screen):
-    os.system('cls' if os.name == 'nt' else 'clear')
-    for i in range(len(list_screen[value_screen])):
-        if i == 0:
-            print(SPACING + f"{list_screen[value_screen][i]:=^40}\n\n")
-        elif value_screen == 4 or value_screen == 11:
-            print(list_screen[value_screen][i])
-        elif value_screen == 6:
-            print(f"{list_screen[value_screen][i]:^48}")
-        else:
-            print(f"{list_screen[value_screen][i]:^48}\n\n")
-
-
-def default_screen_input(value_input):
-    for option in list_input_screen[value_input]:
-        if value_input == Type_input.EXCLUDE.value:
-            if option == SPACING + "MENU: _":
-                print(option, end="")
+        if type == "EXCLUDE":
+            if element == SPACING + "MENU: _":
+                print(element, end="")
             else:
-                print(option)
+                print(element)
         else:
-            print(option, end="")
+            print(element, end="")
+
+    if type == "ENTER":
+        input()
+    else:
+        return
 
 
 def get_id():
@@ -136,15 +128,14 @@ def get_id():
     
     if not choice.isdigit():
         default_screen(Type_screen.INVALID.value)
-        default_screen_input(Type_input.ENTER.value)
+        display_input("ENTER")
         return None
     
     choice = int(choice)
 
     if not 0 <= choice <= utils.get_actual_id():
         default_screen(Type_screen.INVALID.value)
-        default_screen_input(Type_input.ENTER.value)
-        input()
+        display_input("ENTER")        
         return None
 
     return choice

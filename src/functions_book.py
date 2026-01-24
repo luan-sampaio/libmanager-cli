@@ -1,6 +1,6 @@
 import interface
 import database
-from interface import Type_screen, Type_input
+from interface import Type_screen
 
 AMOUNT_ATTRIBUTES_BOOK = 3
 
@@ -11,8 +11,8 @@ def add_book(book):
 
     database.save_book(book)
     interface.default_screen(Type_screen.REGISTER.value)
-    interface.default_screen_input( Type_input.ENTER.value)
-    input()
+    interface.display_input("ENTER")
+
 
 
 def view_books():
@@ -32,7 +32,8 @@ def delete_book():
     list_of_books = database.show_list_of_books()
 
     interface.default_screen(Type_screen.DELETE.value)
-    interface.default_screen_input(Type_input.EDIT.value)
+    interface.display_input("EDIT")
+
 
     choice = interface.get_id()
     if choice == None:
@@ -40,12 +41,12 @@ def delete_book():
 
     interface.default_screen(Type_screen.CONFIRM_DELETE.value)
     interface.show_book_by_list(choice, list_of_books)
-    interface.default_screen_input(Type_input.EXCLUDE.value)
+    interface.display_input("EXCLUDE")
 
     if not interface.checks_delete():
         interface.default_screen(Type_screen.N_DELETE.value)
-        interface.default_screen_input(Type_input.ENTER.value)
-        input()
+        interface.display_input("ENTER")
+
         return 
     
 
@@ -53,15 +54,15 @@ def delete_book():
     
     interface.default_screen(Type_screen.DELETE_BOOK.value)
     interface.show_book(book)
-    interface.default_screen_input(Type_input.ENTER.value)
-    input()
+    interface.display_input("ENTER")
+
 
 
 def edit_book():
     list_of_books = database.show_list_of_books()
 
-    interface.default_screen(Type_screen.EDIT.value)
-    interface.default_screen_input(Type_input.EDIT.value)
+    interface.display_screen("EDIT")
+    interface.display_input("EDIT")
 
     choice = interface.get_id()
     if choice == None:
@@ -69,20 +70,18 @@ def edit_book():
 
     interface.default_screen(Type_screen.EDIT_BOOK.value)
     interface.show_book_by_list(choice, list_of_books)
-    interface.default_screen_input(Type_input.EDIT_BOOK.value)
+    interface.display_input("EDIT_BOOK")
 
     book = interface.get_field_book()
     if not checks_book(book):
         interface.default_screen(Type_screen.N_EDIT.value)
-        interface.default_screen_input(Type_input.ENTER.value)  
-        input()      
+        interface.display_input("ENTER")
         return 
 
     database.edit_book(book, choice)
 
     interface.default_screen(Type_screen.EDIT_OK.value)
-    interface.default_screen_input(Type_input.ENTER.value)
-    input()
+    interface.display_input("ENTER")
 
 
 def checks_book(book):
@@ -102,4 +101,3 @@ def checks_empty_title(book):
     except AttributeError:
         return False    
     return True
-
