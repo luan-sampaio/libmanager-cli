@@ -1,37 +1,11 @@
 import os
 import utils
-from enum import Enum
 
 
 SPACING = " " * 4
 SPACING_EQUAL_SIGN = " " * 4 + "=" * 40 + "\n"
-SPACING_MINUS_SIGN = " " * 4 + "-" * 40 + "\n"
+SPACING_MINUS_SIGN = " " * 4 + "-" * 40
 DISPLAY_HEADER = 0
-
-def default_screen(value_screen):
-    os.system('cls' if os.name == 'nt' else 'clear')
-    for i in range(len(list_screen[value_screen])):
-        if i == 0:
-            print(SPACING + f"{list_screen[value_screen][i]:=^40}\n\n")
-        elif value_screen == 4 or value_screen == 11:
-            print(list_screen[value_screen][i])
-        elif value_screen == 6:
-            print(f"{list_screen[value_screen][i]:^48}")
-        else:
-            print(f"{list_screen[value_screen][i]:^48}\n\n")
-
-def display_screen(type):
-    list_screen = screen[type]
-    
-    os.system('cls' if os.name == 'nt' else 'clear')
-
-    for i in range(len(list_screen)):
-        if i == DISPLAY_HEADER:
-            print(SPACING + f"{list_screen[i]:=^40}\n\n")
-        elif type == "START":
-            print(list_screen[i])
-        else:
-            print(f"{list_screen[i]:^48}\n\n")
 
 
 screen = {
@@ -42,54 +16,33 @@ screen = {
     "START": [" LIBMANAGER v1.0 ", "\tEscolha uma opção:\n", "\t[1] Cadastrar livro", 
      "\t[2] Editar livro", "\t[3] Excluir livro", "\t[4] Visualizar livros",
      "\t[5] Sair do programa\n"],
-
+    "DELETE": [" EXCLUIR ", "Digite o ID do livro que deseja excluir!"],
+    "EMPTY": [" LISTA VAZIA ", "Não existe livros cadastrados no momento!"],
+    "REGISTER": [" CADASTRO ", "Livro Cadastrado com sucesso!"],
+    "CONFIRM_DELETE": [" EXCLUIR ", "ATENÇÃO: Esta ação não pode ser defesfeita!"],
+    "VIEW": [" CONSULTA ", SPACING + f"{'ID':<4}{'TÍTULO':<19}{'AUTOR':<15}{'ANO'}",
+     SPACING_MINUS_SIGN],
+    "EDIT_BOOK": [" EDIÇÃO "],
+    "EDIT_OK": ["", f"{'Livro editado com sucesso!':^48}"],
+    "N_EDIT": ["", f"{'Não houve Edição no livro!':^48}"],
+    "N_DELETE": ["", f"{'O Livro NÃO foi excluído!'}"],
+    "DELETE_BOOK": [" EXCLUIR ", f"{'O Livro abaixo foi excluído com sucesso!':^48}"]
 }
 
 
-class Type_screen(Enum):
-    INVALID = 0
-    INSERT = 1
-    EXIT = 2
-    EDIT = 3
-    START = 4
-    DELETE = 5
-    INVALID_INPUT = 6
-    EMPTY = 7
-    DELETE_SUCESS = 8
-    REGISTER = 9
-    CONFIRM_DELETE = 10
-    VIEW = 11
-    EDIT_BOOK = 12
-    EDIT_OK = 13
-    N_EDIT = 14
-    N_DELETE = 15
-    DELETE_BOOK = 16
+def display_screen(type):
+    list_screen = screen[type]
+    
+    os.system('cls' if os.name == 'nt' else 'clear')
 
+    for i in range(len(list_screen)):
+        if i == DISPLAY_HEADER:
+            print(SPACING + f"{list_screen[i]:=^40}\n\n")
+        elif type in ["START", "VIEW"]:
+            print(list_screen[i])
+        else:
+            print(f"{list_screen[i]:^48}\n\n")
 
-list_screen = [
-    [" ERRO ", "Opção inválida!"],
-    [" CADASTRO "],
-    [""],
-    [" EDIÇÃO ", "Digite o ID do livro que deseja editar!"],
-    [" LIBMANAGER v1.0 ", "\tEscolha uma opção:\n", "\t[1] Cadastrar livro", 
-     "\t[2] Editar livro", "\t[3] Excluir livro", "\t[4] Visualizar livros",
-     "\t[5] Sair do programa\n"],
-    [" EXCLUIR ", "Digite o ID do livro que deseja excluir!"],
-    [" ERRO ", "ID inexistente!\n", "Acesse a lista de livros", 
-     "para consultar o id do livro desejado.\n\n"],
-    [" LISTA VAZIA ", "Não existe livros cadastrados no momento!"],
-    ["", "Livro deletado com sucesso!"],
-    [" CADASTRO ", "Livro Cadastrado com sucesso!"],
-    [" EXCLUIR ", "ATENÇÃO: Esta ação não pode ser defesfeita!"],
-    [" CONSULTA ", SPACING + f"{'ID':<4}{'TÍTULO':<19}{'AUTOR':<15}{'ANO'}",
-     SPACING_MINUS_SIGN],
-    [" EDIÇÃO "],
-    ["", f"{'Livro editado com sucesso!':^48}"],
-    ["", 
-     f"{'Não houve Edição no livro!':^48}"],
-    ["", f"{'O Livro NÃO foi excluído!'}"], 
-    [" EXCLUIR ", f"{'O Livro abaixo foi excluído com sucesso!':^48}"]
-]
 
 screen_input = {
     "ENTER": ["\tPressione [ENTER] para retornar\n", SPACING_EQUAL_SIGN],
@@ -127,14 +80,14 @@ def get_id():
     choice = input()
     
     if not choice.isdigit():
-        default_screen(Type_screen.INVALID.value)
+        display_screen("INVALID")
         display_input("ENTER")
         return None
     
     choice = int(choice)
 
     if not 0 <= choice <= utils.get_actual_id():
-        default_screen(Type_screen.INVALID.value)
+        display_screen("INVALID")
         display_input("ENTER")        
         return None
 
@@ -142,7 +95,7 @@ def get_id():
 
 
 def get_book():
-    title = input(SPACING + "Insira o título do livro: ",)
+    title = input("\n "+ SPACING + "Insira o título do livro: ",)
     if not title:
         return
 
@@ -185,7 +138,7 @@ def show_book_by_list(id, books):
 
 
 def get_field_book():
-    title = input(SPACING + "Digite o título: ")
+    title = input("\n" + SPACING + "Digite o título: ")
     author = input(SPACING + "Digite o autor: ")
     date = input(SPACING + "Digite o ano: ")
     return {"title": title, "author": author, "date": date}
