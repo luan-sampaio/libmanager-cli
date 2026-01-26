@@ -29,7 +29,6 @@ screen = {
     "DELETE_BOOK": [" EXCLUIR ", f"{'O Livro abaixo foi excluído com sucesso!':^48}"]
 }
 
-
 def display_screen(type):
     list_screen = screen[type]
     
@@ -85,7 +84,6 @@ def get_id():
         return None
     
     choice = int(choice)
-
     if not 0 <= choice <= utils.get_actual_id():
         display_screen("INVALID")
         display_input("ENTER")        
@@ -95,7 +93,7 @@ def get_id():
 
 
 def get_book():
-    title = input("\n "+ SPACING + "Insira o título do livro: ",)
+    title = input("\n "+ SPACING + "Insira o título do livro: ")
     if not title:
         return
 
