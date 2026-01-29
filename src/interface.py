@@ -162,10 +162,20 @@ def show_book_by_list(id_book, books):
 
 
 def get_field_book():
+    book = {"title": None, "author": None, "date": None}
+    
     title = input("\n" + SPACING + "Digite o título: ")
+    if title:
+        book["title"] = title
+        
     author = input(SPACING + "Digite o autor: ")
+    if author:
+        book["author"] = author
+        
     date = input(SPACING + "Digite o ano: ")
-    return {"title": title, "author": author, "date": date}
+    if date:
+        book["date"] = date
+    return book
 
 
 def show_book(book):

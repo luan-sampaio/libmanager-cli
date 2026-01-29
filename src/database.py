@@ -15,6 +15,13 @@ def remove_book(id_book):
 
 
 def edit_book(book, id_book):
-    list_of_books[id_book]["title"] = book.get("title")
-    list_of_books[id_book]["author"] = book.get("author")
-    list_of_books[id_book]["date"] = book.get("date")
+    if book.get("title"):
+        list_of_books[id_book]["title"] = book.get("title")
+    
+    if book.get("author"):
+        list_of_books[id_book]["author"] = book.get("author")
+
+    if book.get("date"):
+        list_of_books[id_book]["date"] = book.get("date")
+        
+        
