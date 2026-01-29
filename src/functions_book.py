@@ -4,14 +4,13 @@ import database
 AMOUNT_ATTRIBUTES_BOOK = 3
 
 
-def add_book(book): 
+def add_book(book):
     if not checks_empty_title(book):
         return
 
     database.save_book(book)
     interface.display_screen("REGISTER")
     interface.display_input("ENTER")
-
 
 
 def view_books():
@@ -22,7 +21,7 @@ def view_books():
 
 def verify_list_books():
     list_of_books = database.show_list_of_books()
-    if not len(list_of_books):
+    if not list_of_books:
         return False
     return True
 
@@ -33,10 +32,9 @@ def delete_book():
     interface.display_screen("DELETE")
     interface.display_input("EDIT")
 
-
     choice = interface.get_id()
-    if choice == None:
-        return 
+    if choice is None:
+        return
 
     interface.display_screen("CONFIRM_DELETE")
     interface.show_book_by_list(choice, list_of_books)
@@ -45,15 +43,13 @@ def delete_book():
     if not interface.checks_delete():
         interface.display_screen("N_DELETE")
         interface.display_input("ENTER")
-        return 
-    
+        return
 
     book = database.remove_book(choice)
-    
+
     interface.display_screen("DELETE_BOOK")
     interface.show_book(book)
     interface.display_input("ENTER")
-
 
 
 def edit_book():
@@ -63,8 +59,8 @@ def edit_book():
     interface.display_input("EDIT")
 
     choice = interface.get_id()
-    if choice == None:
-        return 
+    if choice is None:
+        return
 
     interface.display_screen("EDIT_BOOK")
     interface.show_book_by_list(choice, list_of_books)
@@ -74,7 +70,7 @@ def edit_book():
     if not checks_book(book):
         interface.display_screen("N_EDIT")
         interface.display_input("ENTER")
-        return 
+        return
 
     database.edit_book(book, choice)
 
@@ -85,9 +81,9 @@ def edit_book():
 def checks_book(book):
     count_empty = 0
     for value in book.values():
-       if not value:
+        if not value:
             count_empty += 1
-    
+
     if count_empty == AMOUNT_ATTRIBUTES_BOOK:
         return False
     return True
@@ -97,5 +93,5 @@ def checks_empty_title(book):
     try:
         book.get("title")
     except AttributeError:
-        return False    
+        return False
     return True

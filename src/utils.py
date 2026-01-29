@@ -1,11 +1,11 @@
-id = -1
+id_book = -1
+
 
 def increase_id():
-    global id
-    id += 1
-    return id
+    global id_book
+    id_book += 1
+    return id_book
 
 
 def get_actual_id():
-    global id
-    return id
+    return id_book

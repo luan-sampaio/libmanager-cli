@@ -39,7 +39,6 @@ def main():
                     interface.display_screen("EMPTY")
                     interface.display_input("ENTER")
 
-
             case "5":
                 interface.display_screen("EXIT")
                 interface.display_input("EXIT")
