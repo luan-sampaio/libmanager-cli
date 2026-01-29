@@ -1,153 +1,178 @@
 import os
-from database import show_list_of_books
-from enum import Enum
+import utils
 
 
 SPACING = " " * 4
 SPACING_EQUAL_SIGN = " " * 4 + "=" * 40 + "\n"
-SPACING_MINUS_SIGN = " " * 4 + "-" * 40 + "\n"
+SPACING_MINUS_SIGN = " " * 4 + "-" * 40
+DISPLAY_HEADER = 0
 
 
-class Type_screen(Enum):
-    INVALID = 0
-    INSERT = 1
-    EXIT = 2
-    EDIT = 3
-    START = 4
-    DELETE = 5
-    INVALID_INPUT = 6
-    EMPTY = 7
-    DELETE_SUCESS = 8
-    REGISTER = 9
-    CONFIRM_DELETE = 10
-    VIEW = 11
-    EDIT_BOOK = 12
-    EDIT_OK = 13
+screen = {
+    "INVALID": [" ERRO ", "Opção inválida!"],
+    "INSERT": [" CADASTRO "],
+    "EXIT": [""],
+    "EDIT": [" EDIÇÃO ", "Digite o ID do livro que deseja editar!"],
+    "START": [
+        " LIBMANAGER v1.0 ",
+        "\tEscolha uma opção:\n",
+        "\t[1] Cadastrar livro",
+        "\t[2] Editar livro",
+        "\t[3] Excluir livro",
+        "\t[4] Visualizar livros",
+        "\t[5] Sair do programa\n",
+    ],
+    "DELETE": [" EXCLUIR ", "Digite o ID do livro que deseja excluir!"],
+    "EMPTY": [" LISTA VAZIA ", "Não existe livros cadastrados no momento!"],
+    "REGISTER": [" CADASTRO ", "Livro Cadastrado com sucesso!"],
+    "CONFIRM_DELETE": [" EXCLUIR ", "ATENÇÃO: Esta ação não pode ser defesfeita!"],
+    "VIEW": [
+        " CONSULTA ",
+        SPACING + f"{'ID':<4}{'TÍTULO':<19}{'AUTOR':<15}{'ANO'}",
+        SPACING_MINUS_SIGN,
+    ],
+    "EDIT_BOOK": [" EDIÇÃO "],
+    "EDIT_OK": ["", f"{'Livro editado com sucesso!':^48}"],
+    "N_EDIT": ["", f"{'Não houve Edição no livro!':^48}"],
+    "N_DELETE": ["", f"{'O Livro NÃO foi excluído!'}"],
+    "DELETE_BOOK": [" EXCLUIR ", f"{'O Livro abaixo foi excluído com sucesso!':^48}"],
+}
 
 
-list_screen = [
-    [" ERRO ", "Opção inválida!"],
-    [" CADASTRO "],
-    [""],
-    [" EDIÇÃO ", "Digite o ID do livro que deseja editar!"],
-    [" LIBMANAGER v1.0 ", "\tEscolha uma opção:\n", "\t[1] Cadastrar livro", 
-     "\t[2] Editar livro", "\t[3] Excluir livro", "\t[4] Visualizar livros",
-     "\t[5] Sair do programa\n"],
-    [" EXCLUIR ", "Digite o ID do livro que deseja excluir!"],
-    [" ERRO ", "ID inexistente!\n", "Acesse a lista de livros", 
-     "para consultar o id do livro desejado.\n\n"],
-    [" LISTA VAZIA ", "Não existe livros cadastrados no momento!"],
-    ["", "Livro deletado com sucesso!"],
-    [" CADASTRO ", "Livro Cadastrado com sucesso!"],
-    [" EXCLUIR ", "ATENÇÃO: Esta ação não pode ser defesfeita!"],
-    [" CONSULTA ", SPACING + f"{'ID':<4}{'TÍTULO':<19}{'AUTOR':<15}{'ANO'}",
-     SPACING_MINUS_SIGN],
-    [" EDIÇÃO "],
-    ["", f"{'Livro editado com sucesso!':^48}"]
-]
+def display_screen(type_screen):
+    list_screen = screen[type_screen]
+    os.system("cls" if os.name == "nt" else "clear")
 
-
-class Type_input(Enum):
-    ENTER = 0
-    FILL = 1
-    EXIT = 2
-    EDIT = 3
-    START = 4
-    EXCLUDE = 5
-    EDIT_BOOK = 6
-
-
-list_input_screen = [
-    ["\tPressione [ENTER] para retornar\n", SPACING_EQUAL_SIGN],
-    [f"{'Preencha os dados abaixo.':^48}\n\n\n", f"{'Pressione [ENTER] para retornar':^48}\n", SPACING_MINUS_SIGN],
-    [f"{'Obrigado por usar o sistema!':^48}\n\n", SPACING_EQUAL_SIGN],
-    [SPACING + "(Pressione [ENTER] para retornar)\n", SPACING_EQUAL_SIGN, 
-      SPACING + "> _"], 
-    [SPACING_EQUAL_SIGN, SPACING + "Digite sua opção abaixo: \n", 
-     SPACING + "> _"],
-    [SPACING_EQUAL_SIGN, SPACING + "> Para confirmar, digite 'DELETAR' ou ", SPACING +
-     "pressione [ENTER] para retornar ao ", SPACING + "MENU: _"],
-    [f"{'Se não for alterar, pressione [ENTER]':^48}", "\n", SPACING_MINUS_SIGN]
-]
-
-
-def default_screen(value_screen):
-    os.system('cls' if os.name == 'nt' else 'clear')
-    for i in range(len(list_screen[value_screen])):
-        if i == 0:
-            print(SPACING + f"{list_screen[value_screen][i]:=^40}\n\n")
-        elif value_screen == 4 or value_screen == 11:
-            print(list_screen[value_screen][i])
-        elif value_screen == 6:
-            print(f"{list_screen[value_screen][i]:^48}")
+    for i, type_list in enumerate(list_screen):
+        if i == DISPLAY_HEADER:
+            print(SPACING + f"{type_list:=^40}\n\n")
+        elif type_screen in ["START", "VIEW"]:
+            print(type_list)
         else:
-            print(f"{list_screen[value_screen][i]:^48}\n\n")
+            print(f"{type_list:^48}\n\n")
 
 
-def default_screen_input(value_input):
-    for option in list_input_screen[value_input]:
-        if value_input == Type_input.EXCLUDE.value:
-            if option == SPACING + "MENU: _":
-                print(option, end="")
+screen_input = {
+    "ENTER": ["\tPressione [ENTER] para retornar\n", SPACING_EQUAL_SIGN],
+    "FILL": [
+        f"{'Preencha os dados abaixo.':^48}\n\n\n",
+        f"{'Pressione [ENTER] para retornar':^48}\n",
+        SPACING_MINUS_SIGN,
+    ],
+    "EXIT": [f"{'Obrigado por usar o sistema!':^48}\n\n\n", SPACING_EQUAL_SIGN],
+    "EDIT": [
+        "\tPressione [ENTER] para retornar\n",
+        SPACING_EQUAL_SIGN,
+        SPACING + "> _",
+    ],
+    "START": [
+        SPACING_EQUAL_SIGN,
+        SPACING + "Digite sua opção abaixo: \n",
+        SPACING + "> _",
+    ],
+    "EXCLUDE": [
+        SPACING_EQUAL_SIGN,
+        SPACING + "> Para confirmar, digite 'DELETAR' ou ",
+        SPACING + "pressione [ENTER] para retornar ao ",
+        SPACING + "MENU: _",
+    ],
+    "EDIT_BOOK": [
+        f"{'Se não for alterar, pressione [ENTER]':^48}",
+        "\n",
+        SPACING_MINUS_SIGN,
+    ],
+}
+
+
+def display_input(type_input):
+    list_screen_input = screen_input[type_input]
+    for element in list_screen_input:
+        if type_input == "EXCLUDE":
+            if element == SPACING + "MENU: _":
+                print(element, end="")
             else:
-                print(option)
+                print(element)
         else:
-            print(option, end="")
+            print(element, end="")
+
+    if type_input == "ENTER":
+        input()
+    else:
+        return
 
 
-def get_id(max_id):
+def get_id():
     choice = input()
 
     if not choice.isdigit():
-        default_screen(Type_screen.INVALID.value)
-        default_screen_input(Type_input.ENTER.value)
-        input()
-        return 
-    
-    if not 0 <= int(choice) < int(max_id):
-        default_screen(Type_screen.INVALID.value)
-        default_screen_input(Type_input.ENTER.value)
-        input()
-        return
+        display_screen("INVALID")
+        display_input("ENTER")
+        return None
+
+    choice = int(choice)
+    if not 0 <= choice <= utils.get_actual_id():
+        display_screen("INVALID")
+        display_input("ENTER")
+        return None
 
     return choice
 
 
 def get_book():
-    title = input(" " * 4 + "Insira o título do livro: ",)
+    title = input("\n" + SPACING + "Insira o título do livro: ")
     if not title:
-        return
+        return None
 
-    author = input(" " * 4 + "Insira o nome do autor: ")  
-    date = input(" " * 4 + "Insira o ano de lançamento do livro: ")
-    
-    return {"title": title, "author": author, "date": date}
+    while True:
+        author = input(SPACING + "Insira o nome do autor: ")
+        if not author:
+            display_fill_info()
+        else:
+            break
+
+    while True:
+        date = input(SPACING + "Insira o ano de lançamento do livro: ")
+        if not date:
+            display_fill_info()
+        else:
+            break
+
+    book_id = utils.increase_id()
+    return {"title": title, "author": author, "date": date, "id": book_id}
 
 
 def show_list_books(list_books):
-    count = 0
     for book in list_books:
-        print(SPACING +  f"{count:<4}{book.get('title'):<19}{book.get('author'):<15}{book.get('date')}")
-        count += 1
+        print(
+            SPACING
+            + f"{book.get('id'):<4}{book.get('title'):<19}{book.get('author'):<15}{book.get('date')}"
+        )
     print("\n")
 
 
 def checks_delete():
     checks = input()
-    if checks == "DELETAR":
-        return True
-    else:
-        return False
+    return checks == "DELETAR"
 
 
-def show_book(id, books):
-    print(SPACING + "Título: " + f"{books[id].get('title')}")
-    print(SPACING + "Autor: " + f"{books[id].get('author')}")
-    print(SPACING + "Data: " + f"{books[id].get('date')}\n\n")
+def show_book_by_list(id_book, books):
+    print(SPACING + "Título: " + f"{books[id_book].get('title')}")
+    print(SPACING + "Autor: " + f"{books[id_book].get('author')}")
+    print(SPACING + "Ano: " + f"{books[id_book].get('date')}\n\n")
 
 
 def get_field_book():
-    title = input(SPACING + "Digite o título: ")
+    title = input("\n" + SPACING + "Digite o título: ")
     author = input(SPACING + "Digite o autor: ")
     date = input(SPACING + "Digite o ano: ")
     return {"title": title, "author": author, "date": date}
+
+
+def show_book(book):
+    print(SPACING + "Título: " + f"{book.get('title')}")
+    print(SPACING + "Autor: " + f"{book.get('author')}")
+    print(SPACING + "Ano: " + f"{book.get('date')}\n\n")
+
+
+def display_fill_info():
+    print("\n" + SPACING + "Preencha as informações por favor!")
