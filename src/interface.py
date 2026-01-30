@@ -125,12 +125,11 @@ def get_id():
     return choice
 
 
-def get_book_api():
+def get_title():
     title = input("\n" + SPACING + "Insira o título do livro: ")
     if not title:
         return None
     
-    title = title.replace(" ", "+")
     return title
 
 def get_book():

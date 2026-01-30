@@ -1,6 +1,8 @@
 import interface
 import database
 
+from api_client import get_book_api
+
 AMOUNT_ATTRIBUTES_BOOK = 3
 AUTO = "1"
 
@@ -10,7 +12,8 @@ def add_book(option):
     
     if option == AUTO:
         interface.display_input("FILL")
-        title = interface.get_book_api()
+        title = interface.get_title()
+        book = get_book_api(title)
     else:
         interface.display_input("FILL")
         book = interface.get_book()
