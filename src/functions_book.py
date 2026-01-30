@@ -2,9 +2,19 @@ import interface
 import database
 
 AMOUNT_ATTRIBUTES_BOOK = 3
+AUTO = "1"
 
 
-def add_book(book):
+def add_book(option):
+    interface.display_screen("INSERT")
+    
+    if option == AUTO:
+        interface.display_input("FILL")
+        title = interface.get_book_api()
+    else:
+        interface.display_input("FILL")
+        book = interface.get_book()
+    
     if not checks_empty_title(book):
         return
 

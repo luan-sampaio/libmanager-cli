@@ -81,6 +81,11 @@ screen_input = {
         "\n",
         SPACING_MINUS_SIGN,
     ],
+    "ADD_BOOK": [       
+        "\tEscolha uma opção:\n",
+        "\t[1] Cadastro Automático",
+        "\t[2] Cadastro Manual\n",
+    ],
 }
 
 
@@ -92,6 +97,8 @@ def display_input(type_input):
                 print(element, end="")
             else:
                 print(element)
+        elif type_input == "ADD_BOOK":
+            print(element)
         else:
             print(element, end="")
 
@@ -117,6 +124,14 @@ def get_id():
 
     return choice
 
+
+def get_book_api():
+    title = input("\n" + SPACING + "Insira o título do livro: ")
+    if not title:
+        return None
+    
+    title = title.replace(" ", "+")
+    return title
 
 def get_book():
     title = input("\n" + SPACING + "Insira o título do livro: ")
