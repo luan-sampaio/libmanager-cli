@@ -36,6 +36,8 @@ screen = {
     "N_EDIT": ["", f"{'Não houve Edição no livro!':^48}"],
     "N_DELETE": ["", f"{'O Livro NÃO foi excluído!'}"],
     "DELETE_BOOK": [" EXCLUIR ", f"{'O Livro abaixo foi excluído com sucesso!':^48}"],
+    "ERROR_API": [" ERROR ", f"{'Houve algum problema na API, tente novamente!':^48}"],
+    "ERROR_BOOK": [" ERROR ", f"{'Título Inválido! Digite um título válido.':^48}"],
 }
 
 

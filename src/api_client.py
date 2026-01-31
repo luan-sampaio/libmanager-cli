@@ -1,28 +1,48 @@
 import requests
 import utils
+import interface
+
 
 URL = "https://openlibrary.org/search.json?q="
+N_API = "NOT API"
+
 
 def get_book_api(title):
-    response = requests.get(URL + title.replace(' ', '+'))
-    content = response.json()
+    content = get_json(title)
+    if not content :
+        return N_API
+        
+    book_api = filter_json(content, title)        
+    if not book_api:
+        return None
     
-    book_api = {}
-    docs = content["docs"]
+    try:
+        return {
+                "title": book_api["title"],
+                "author": book_api["author_name"][0],
+                "date": book_api["first_publish_year"],
+                "id": utils.increase_id()
+                }
+    except KeyError:
+        return None
+
+
+def get_json(title):
+    try:
+        return requests.get(URL + title.replace(' ', '+')).json()
+    except requests.RequestException:
+        interface.display_screen("ERROR_API")
+        interface.display_input("ENTER")
+        return None
+    
+
+def filter_json(content, title):
+    try:
+        docs = content["docs"]
+    except KeyError:
+        return None
     
     for dict_book in docs:
         if dict_book["title"] == title:
-            book_api = dict_book
-            break
-    
-    book_id = utils.increase_id()
-    
-    book = {
-        "title": book_api["title"],
-        "author": book_api["author_name"][0],
-        "date": book_api["first_publish_year"],
-        "id": book_id
-    }
-        
-    return book
-    
+            return dict_book
+    return None
