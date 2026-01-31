@@ -1,11 +1,32 @@
 import interface
 import database
 
+from api_client import get_book_api
+
 AMOUNT_ATTRIBUTES_BOOK = 3
+AUTO = "1"
 
 
-def add_book(book):
-    if not checks_empty_title(book):
+def add_book(option):
+    interface.display_screen("INSERT")
+    
+    if option == AUTO:
+        interface.display_input("FILL")
+        
+        title = interface.get_title()
+        if not title:
+            return
+            
+        book = get_book_api(title)
+    else:
+        interface.display_input("FILL")
+        book = interface.get_book()
+    
+    if book == "NOT API":
+        return
+    if not book:
+        interface.display_screen("ERROR_BOOK")
+        interface.display_input("ENTER")
         return
 
     database.save_book(book)
@@ -85,13 +106,5 @@ def checks_book(book):
             count_empty += 1
 
     if count_empty == AMOUNT_ATTRIBUTES_BOOK:
-        return False
-    return True
-
-
-def checks_empty_title(book):
-    try:
-        book.get("title")
-    except AttributeError:
         return False
     return True

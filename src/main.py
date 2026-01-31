@@ -11,9 +11,16 @@ def main():
         match options:
             case "1":
                 interface.display_screen("INSERT")
-                interface.display_input("FILL")
-                book = interface.get_book()
-                functions_book.add_book(book)
+                interface.display_input("ADD_BOOK")
+                interface.display_input("START")
+                
+                option = input()
+                if option in ["1", "2"]:
+                    functions_book.add_book(option)
+                else:
+                    interface.display_screen("INVALID")
+                    interface.display_input("ENTER")
+                    
 
             case "2":
                 if functions_book.verify_list_books():

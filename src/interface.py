@@ -36,6 +36,8 @@ screen = {
     "N_EDIT": ["", f"{'Não houve Edição no livro!':^48}"],
     "N_DELETE": ["", f"{'O Livro NÃO foi excluído!'}"],
     "DELETE_BOOK": [" EXCLUIR ", f"{'O Livro abaixo foi excluído com sucesso!':^48}"],
+    "ERROR_API": [" ERROR ", f"{'Houve algum problema na API, tente novamente!':^48}"],
+    "ERROR_BOOK": [" ERROR ", f"{'Título Inválido! Digite um título válido.':^48}"],
 }
 
 
@@ -81,6 +83,11 @@ screen_input = {
         "\n",
         SPACING_MINUS_SIGN,
     ],
+    "ADD_BOOK": [       
+        "\tEscolha uma opção:\n",
+        "\t[1] Cadastro Automático",
+        "\t[2] Cadastro Manual\n",
+    ],
 }
 
 
@@ -92,6 +99,8 @@ def display_input(type_input):
                 print(element, end="")
             else:
                 print(element)
+        elif type_input == "ADD_BOOK":
+            print(element)
         else:
             print(element, end="")
 
@@ -117,6 +126,13 @@ def get_id():
 
     return choice
 
+
+def get_title():
+    title = input("\n" + SPACING + "Insira o título do livro: ")
+    if not title:
+        return None
+    
+    return title
 
 def get_book():
     title = input("\n" + SPACING + "Insira o título do livro: ")
