@@ -9,3 +9,6 @@ env/
 ENV/
 
 .vscode/
+data/*.csv
+*.csv
+!configuracoes.csv

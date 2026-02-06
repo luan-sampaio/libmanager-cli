@@ -1,9 +1,14 @@
+import csv
+
+
 list_of_books = []
 
 
-def save_book(book):
-    list_of_books.append(book)
-    return list_of_books
+def save_book_csv(book):
+    with open("data/books.csv", "a") as analysis, open("data/books.csv") as read:
+        reader = csv.DictReader(read)
+        writer = csv.DictWriter(analysis, reader.fieldnames)
+        writer.writerow(book)
 
 
 def show_list_of_books():

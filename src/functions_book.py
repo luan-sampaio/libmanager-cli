@@ -29,7 +29,7 @@ def add_book(option):
         interface.display_input("ENTER")
         return
 
-    database.save_book(book)
+    database.save_book_csv(book)
     interface.display_screen("REGISTER")
     interface.display_input("ENTER")
 
