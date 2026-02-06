@@ -18,10 +18,10 @@ def get_book_api(title):
 
     try:
         return {
+            "id": utils.increase_id(),
             "title": book_api["title"],
             "author": book_api["author_name"][0],
             "date": book_api["first_publish_year"],
-            "id": utils.increase_id(),
         }
     except KeyError:
         return None
