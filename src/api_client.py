@@ -1,6 +1,7 @@
 import requests
-import utils
 import interface
+
+from database import increase_id
 
 
 URL = "https://openlibrary.org/search.json?q="
@@ -18,7 +19,7 @@ def get_book_api(title):
 
     try:
         return {
-            "id": utils.increase_id(),
+            "id": increase_id(),
             "title": book_api["title"],
             "author": book_api["author_name"][0],
             "date": book_api["first_publish_year"],

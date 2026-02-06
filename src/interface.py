@@ -1,5 +1,6 @@
 import os
-import utils
+
+from database import get_actual_id, increase_id
 
 
 SPACING = " " * 4
@@ -83,7 +84,7 @@ screen_input = {
         "\n",
         SPACING_MINUS_SIGN,
     ],
-    "ADD_BOOK": [       
+    "ADD_BOOK": [
         "\tEscolha uma opção:\n",
         "\t[1] Cadastro Automático",
         "\t[2] Cadastro Manual\n",
@@ -119,7 +120,7 @@ def get_id():
         return None
 
     choice = int(choice)
-    if not 0 <= choice <= utils.get_actual_id():
+    if not 0 <= choice <= get_actual_id():
         display_screen("INVALID")
         display_input("ENTER")
         return None
@@ -131,8 +132,9 @@ def get_title():
     title = input("\n" + SPACING + "Insira o título do livro: ")
     if not title:
         return None
-    
+
     return title
+
 
 def get_book():
     title = input("\n" + SPACING + "Insira o título do livro: ")
@@ -153,8 +155,8 @@ def get_book():
         else:
             break
 
-    book_id = utils.increase_id()
-    return { "id": book_id, "title": title, "author": author, "date": date}
+    book_id = increase_id()
+    return {"id": book_id, "title": title, "author": author, "date": date}
 
 
 def show_list_books(list_books):
@@ -179,15 +181,15 @@ def show_book_by_list(id_book, books):
 
 def get_field_book():
     book = {"title": None, "author": None, "date": None}
-    
+
     title = input("\n" + SPACING + "Digite o título: ")
     if title:
         book["title"] = title
-        
+
     author = input(SPACING + "Digite o autor: ")
     if author:
         book["author"] = author
-        
+
     date = input(SPACING + "Digite o ano: ")
     if date:
         book["date"] = date
