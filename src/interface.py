@@ -154,7 +154,7 @@ def get_book():
             break
 
     book_id = utils.increase_id()
-    return {"id": book_id, "title": title, "author": author, "date": date}
+    return {"title": title, "author": author, "date": date, "id": book_id}
 
 
 def show_list_books(list_books):
