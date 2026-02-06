@@ -25,3 +25,8 @@ def edit_book(book, id_book):
         list_of_books[id_book]["date"] = book.get("date")
         
         
+def save_book_csv(book):
+    with open("database.csv", "a") as analysis, open("database.csv") as read:
+        reader = csv.DictReader(read)
+        writer = csv.DictWriter(analysis, reader.fieldnames)
+        writer.writerow(book)
