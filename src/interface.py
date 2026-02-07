@@ -28,10 +28,7 @@ screen = {
     "REGISTER": [" CADASTRO ", "Livro Cadastrado com sucesso!"],
     "CONFIRM_DELETE": [" EXCLUIR ", "ATENÇÃO: Esta ação não pode ser defesfeita!"],
     "VIEW": [
-        " CONSULTA ",
-        SPACING + f"{'ID':<4}{'TÍTULO':<19}{'AUTOR':<15}{'ANO'}",
-        SPACING_MINUS_SIGN,
-    ],
+        " CONSULTA "],
     "EDIT_BOOK": [" EDIÇÃO "],
     "EDIT_OK": ["", f"{'Livro editado com sucesso!':^48}"],
     "N_EDIT": ["", f"{'Não houve Edição no livro!':^48}"],
@@ -157,15 +154,6 @@ def get_book():
 
     book_id = increase_id()
     return {"id": book_id, "title": title, "author": author, "date": date}
-
-
-def show_list_books(list_books):
-    for book in list_books:
-        print(
-            SPACING
-            + f"{book.get('id'):<4}{book.get('title'):<19}{book.get('author'):<15}{book.get('date')}"
-        )
-    print("\n")
 
 
 def checks_delete():

@@ -1,7 +1,7 @@
 import csv
 import sys
 
-list_of_books = []
+from tabulate import tabulate
 
 
 def save_book_csv(book):
@@ -13,9 +13,21 @@ def save_book_csv(book):
         writer.writerow(book)
 
 
-def show_list_of_books():
-    return list_of_books
+def show_table_of_books():
+    with open("data/books.csv", encoding="utf-8") as read:
+        reader = csv.DictReader(read)
+        print(tabulate(reader, headers="keys", tablefmt="grid"))            
 
+
+def show_list_of_books():
+    list_of_books = []
+    with open("data/books.csv", encoding="utf-8") as read:
+        reader = csv.DictReader(read)
+        for row in reader:
+            list_of_books.append(row)
+            
+        return list_of_books
+    
 
 def remove_book(id_book):
     return list_of_books.pop(int(id_book))

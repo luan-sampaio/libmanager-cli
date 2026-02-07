@@ -35,9 +35,8 @@ def add_book(option):
 
 
 def view_books():
-    list_of_books = database.show_list_of_books()
     interface.display_screen("VIEW")
-    interface.show_list_books(list_of_books)
+    database.show_table_of_books()
 
 
 def verify_list_books():
