@@ -1,6 +1,6 @@
 import os
 
-from database import get_actual_id, increase_id
+from database import get_id, show_list_of_books, get_actual_id
 
 
 SPACING = " " * 4
@@ -117,7 +117,7 @@ def get_id():
         return None
 
     choice = int(choice)
-    if not 0 <= choice <= get_actual_id():
+    if not 0 <= choice <= get_id():
         display_screen("INVALID")
         display_input("ENTER")
         return None
@@ -152,7 +152,7 @@ def get_book():
         else:
             break
 
-    book_id = increase_id()
+    book_id = get_actual_id() + 1
     return {"id": book_id, "title": title, "author": author, "date": date}
 
 
@@ -161,7 +161,8 @@ def checks_delete():
     return checks == "DELETAR"
 
 
-def show_book_by_list(id_book, books):
+def show_book_by_list(id_book):
+    books = show_list_of_books()
     print(SPACING + "Título: " + f"{books[id_book].get('title')}")
     print(SPACING + "Autor: " + f"{books[id_book].get('author')}")
     print(SPACING + "Ano: " + f"{books[id_book].get('date')}\n\n")

@@ -3,6 +3,7 @@ import sys
 
 from tabulate import tabulate
 
+id_book = -1
 
 def save_book_csv(book):
     with open("data/books.csv", "a", encoding="utf-8") as analysis, open(
@@ -26,11 +27,43 @@ def show_list_of_books():
         for row in reader:
             list_of_books.append(row)
             
-        return list_of_books
+    return list_of_books
     
 
+def get_field_names():
+    fieldnames = []
+    with open("data/books.csv", encoding="utf-8") as read:
+        reader = csv.DictReader(read)
+        fieldnames = reader.fieldnames
+
+    return fieldnames
+
+
 def remove_book(id_book):
-    return list_of_books.pop(int(id_book))
+    count_id = 0
+    list_of_books = show_list_of_books()
+    removed_book_list = []
+    excluded_book = {}
+    
+    for row in list_of_books:
+        if int(row.get("id")) == id_book:
+            excluded_book = row
+        else:
+            row["id"] = count_id
+            removed_book_list.append(row)
+            count_id += 1
+            id_book -= 1
+            
+    
+    fieldnames = get_field_names()
+    with open("data/books.csv", "w") as write:
+        writer = csv.DictWriter(write, fieldnames)
+        writer.writeheader()
+        
+        for row in removed_book_list:
+            writer.writerow(row)
+        
+    return excluded_book
 
 
 def edit_book(book, id_book):
@@ -57,7 +90,9 @@ def get_actual_id():
         sys.exit("Use python src/main.py")
 
     if books:
+        input("A")
         return int(books[len(books) - 1]["id"])
+    input("B")
     return id_book_local
 
 
@@ -67,4 +102,5 @@ def increase_id():
     return id_book
 
 
-id_book = get_actual_id()
+def get_id():
+    return id_book
