@@ -66,14 +66,28 @@ def remove_book(id_book):
 
 
 def edit_book(book, id_book):
-    if book.get("title"):
-        list_of_books[id_book]["title"] = book.get("title")
+    list_of_books = show_list_of_books()
+    
+    with open("data/books.csv", "r") as read:
+        reader = csv.DictReader(read)
+        for row in reader:
+            if int(row.get("id")) == id_book:
+                if book.get("title"):
+                    list_of_books[id_book]["title"] = book.get("title")
 
-    if book.get("author"):
-        list_of_books[id_book]["author"] = book.get("author")
+                if book.get("author"):
+                    list_of_books[id_book]["author"] = book.get("author")
 
-    if book.get("date"):
-        list_of_books[id_book]["date"] = book.get("date")
+                if book.get("date"):
+                    list_of_books[id_book]["date"] = book.get("date")
+        
+    fieldnames = get_field_names()
+    with open("data/books.csv", "w") as write:
+        writer = csv.DictWriter(write, fieldnames)
+        writer.writeheader()
+        
+        for book in list_of_books:
+            writer.writerow(book)
 
 
 def get_actual_id():
