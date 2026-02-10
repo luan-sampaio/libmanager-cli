@@ -19,7 +19,7 @@ def get_book_api(title):
 
     try:
         return {
-            "id": int(get_actual_id) + 1,
+            "id": get_actual_id() + 1,
             "title": book_api["title"],
             "author": book_api["author_name"][0],
             "date": book_api["first_publish_year"],

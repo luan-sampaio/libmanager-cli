@@ -17,7 +17,7 @@ def save_book_csv(book):
 def show_table_of_books():
     with open("data/books.csv", encoding="utf-8") as read:
         reader = csv.DictReader(read)
-        print(tabulate(reader, headers="keys", tablefmt="grid"))            
+        print(tabulate(reader, headers="keys", tablefmt="github"))            
 
 
 def show_list_of_books():
@@ -52,7 +52,6 @@ def remove_book(id_book):
             row["id"] = count_id
             removed_book_list.append(row)
             count_id += 1
-            id_book -= 1
             
     
     fieldnames = get_field_names()
@@ -90,9 +89,7 @@ def get_actual_id():
         sys.exit("Use python src/main.py")
 
     if books:
-        input("A")
         return int(books[len(books) - 1]["id"])
-    input("B")
     return id_book_local
 
 

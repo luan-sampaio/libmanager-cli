@@ -1,7 +1,7 @@
 import os
 
-from database import get_id, show_list_of_books, get_actual_id
-
+from database import show_list_of_books, get_actual_id
+import database
 
 SPACING = " " * 4
 SPACING_EQUAL_SIGN = " " * 4 + "=" * 40 + "\n"
@@ -117,7 +117,7 @@ def get_id():
         return None
 
     choice = int(choice)
-    if not 0 <= choice <= get_id():
+    if not 0 <= choice <= database.get_actual_id():
         display_screen("INVALID")
         display_input("ENTER")
         return None

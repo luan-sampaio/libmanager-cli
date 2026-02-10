@@ -64,7 +64,7 @@ def delete_book():
         return
 
     book = database.remove_book(choice)
-
+    
     interface.display_screen("DELETE_BOOK")
     interface.show_book(book)
     interface.display_input("ENTER")
