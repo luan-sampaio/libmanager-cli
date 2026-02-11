@@ -17,7 +17,7 @@ def save_book_csv(book):
 def show_table_of_books():
     with open("data/books.csv", encoding="utf-8") as read:
         reader = csv.DictReader(read)
-        print(tabulate(reader, headers="keys", tablefmt="github"))            
+        print(tabulate(reader, headers="keys", tablefmt="github"), "\n\n")            
 
 
 def show_list_of_books():

@@ -4,8 +4,8 @@ from database import show_list_of_books, get_actual_id
 import database
 
 SPACING = " " * 4
-SPACING_EQUAL_SIGN = " " * 4 + "=" * 40 + "\n"
-SPACING_MINUS_SIGN = " " * 4 + "-" * 40
+SPACING_EQUAL_SIGN =  "=" * 50 + "\n"
+SPACING_MINUS_SIGN =  "-" * 50 + "\n"
 DISPLAY_HEADER = 0
 
 
@@ -16,26 +16,26 @@ screen = {
     "EDIT": [" EDIÇÃO ", "Digite o ID do livro que deseja editar!"],
     "START": [
         " LIBMANAGER v1.0 ",
-        "\tEscolha uma opção:\n",
-        "\t[1] Cadastrar livro",
-        "\t[2] Editar livro",
-        "\t[3] Excluir livro",
-        "\t[4] Visualizar livros",
-        "\t[5] Sair do programa\n",
+        "Escolha uma opção:\n",
+        "[1] Cadastrar livro  ",
+        "[2] Editar livro     ",
+        "[3] Excluir livro    ",
+        "[4] Visualizar livros",
+        "[5] Sair do programa\n",
     ],
     "DELETE": [" EXCLUIR ", "Digite o ID do livro que deseja excluir!"],
     "EMPTY": [" LISTA VAZIA ", "Não existe livros cadastrados no momento!"],
-    "REGISTER": [" CADASTRO ", "Livro Cadastrado com sucesso!"],
+    "REGISTER": [" CADASTRO ", "Livro Cadastrado com sucesso!\n\n"],
     "CONFIRM_DELETE": [" EXCLUIR ", "ATENÇÃO: Esta ação não pode ser defesfeita!"],
     "VIEW": [
         " CONSULTA "],
     "EDIT_BOOK": [" EDIÇÃO "],
-    "EDIT_OK": ["", f"{'Livro editado com sucesso!':^48}"],
-    "N_EDIT": ["", f"{'Não houve Edição no livro!':^48}"],
-    "N_DELETE": ["", f"{'O Livro NÃO foi excluído!'}"],
-    "DELETE_BOOK": [" EXCLUIR ", f"{'O Livro abaixo foi excluído com sucesso!':^48}"],
-    "ERROR_API": [" ERROR ", f"{'Houve algum problema na API, tente novamente!':^48}"],
-    "ERROR_BOOK": [" ERROR ", f"{'Título Inválido! Digite um título válido.':^48}"],
+    "EDIT_OK": ["", "Livro editado com sucesso!"],
+    "N_EDIT": ["", "Não houve Edição no livro!'"],
+    "N_DELETE": ["", "O Livro NÃO foi excluído!"],
+    "DELETE_BOOK": [" EXCLUIR ", "O Livro abaixo foi excluído com sucesso!"],
+    "ERROR_API": [" ERROR ", "Houve algum problema na API, tente novamente!"],
+    "ERROR_BOOK": [" ERROR ", "Título Inválido! Digite um título válido."],
 }
 
 
@@ -45,30 +45,28 @@ def display_screen(type_screen):
 
     for i, type_list in enumerate(list_screen):
         if i == DISPLAY_HEADER:
-            print(SPACING + f"{type_list:=^40}\n\n")
-        elif type_screen in ["START", "VIEW"]:
-            print(type_list)
+            print(f"{type_list:=^50}\n\n")
+        elif type_screen in ["START", "VIEW", "REGISTER"]:
+            print(f"{type_list:^50}")
         else:
-            print(f"{type_list:^48}\n\n")
+            print(f"{type_list:^50}\n\n")
 
 
 screen_input = {
     "ENTER": ["\tPressione [ENTER] para retornar\n", SPACING_EQUAL_SIGN],
     "FILL": [
-        f"{'Preencha os dados abaixo.':^48}\n\n\n",
-        f"{'Pressione [ENTER] para retornar':^48}\n",
+        f"{'Preencha os dados abaixo.':^50}\n\n\n",
+        f"{'Pressione [ENTER] para retornar':^50}\n",
         SPACING_MINUS_SIGN,
     ],
-    "EXIT": [f"{'Obrigado por usar o sistema!':^48}\n\n\n", SPACING_EQUAL_SIGN],
+    "EXIT": [f"{'Obrigado por usar o sistema!':^50}\n\n\n", SPACING_EQUAL_SIGN],
     "EDIT": [
         "\tPressione [ENTER] para retornar\n",
         SPACING_EQUAL_SIGN,
         SPACING + "> _",
     ],
     "START": [
-        SPACING_EQUAL_SIGN,
-        SPACING + "Digite sua opção abaixo: \n",
-        SPACING + "> _",
+        "Digite sua opção abaixo: \n",
     ],
     "EXCLUDE": [
         SPACING_EQUAL_SIGN,
@@ -77,14 +75,14 @@ screen_input = {
         SPACING + "MENU: _",
     ],
     "EDIT_BOOK": [
-        f"{'Se não for alterar, pressione [ENTER]':^48}",
+        f"{'Se não for alterar, pressione [ENTER]':^50}",
         "\n",
         SPACING_MINUS_SIGN,
     ],
     "ADD_BOOK": [
-        "\tEscolha uma opção:\n",
-        "\t[1] Cadastro Automático",
-        "\t[2] Cadastro Manual\n",
+        "Escolha uma opção:\n",
+        "[1] Cadastro Automático",
+        "[2] Cadastro Manual    \n",
     ],
 }
 
@@ -98,7 +96,11 @@ def display_input(type_input):
             else:
                 print(element)
         elif type_input == "ADD_BOOK":
-            print(element)
+            print(f"{element:^50}")
+        elif type_input == "START":
+            print(SPACING_EQUAL_SIGN)
+            print(f"{element:^50}", end="")
+            print("> _", end="")
         else:
             print(element, end="")
 
@@ -126,7 +128,8 @@ def get_id():
 
 
 def get_title():
-    title = input("\n" + SPACING + "Insira o título do livro: ")
+    print(f"{'          Insira o título do livro: ':^30}", end="")
+    title = input()
     if not title:
         return None
 
@@ -134,12 +137,14 @@ def get_title():
 
 
 def get_book():
-    title = input("\n" + SPACING + "Insira o título do livro: ")
+    print(f"{'          Insira o título do livro: ':^30}", end="")
+    title = input()
     if not title:
         return None
 
     while True:
-        author = input(SPACING + "Insira o nome do autor: ")
+        print(f"{'            Insira o nome do autor: ':^30}", end="")
+        author = input()
         if not author:
             display_fill_info()
         else:
