@@ -136,31 +136,6 @@ def get_title():
     return title
 
 
-def get_book():
-    print(f"{'          Insira o título do livro: ':^30}", end="")
-    title = input()
-    if not title:
-        return None
-
-    while True:
-        print(f"{'            Insira o nome do autor: ':^30}", end="")
-        author = input()
-        if not author:
-            display_fill_info()
-        else:
-            break
-
-    while True:
-        date = input(SPACING + "Insira o ano de lançamento do livro: ")
-        if not date:
-            display_fill_info()
-        else:
-            break
-
-    book_id = get_actual_id() + 1
-    return {"id": book_id, "title": title, "author": author, "date": date}
-
-
 def checks_delete():
     checks = input()
     return checks == "DELETAR"

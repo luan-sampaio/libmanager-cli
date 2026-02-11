@@ -7,21 +7,14 @@ AMOUNT_ATTRIBUTES_BOOK = 3
 AUTO = "1"
 
 
-def add_book(option):
-    interface.display_screen("INSERT")
-    
-    if option == AUTO:
-        interface.display_input("FILL")
+def add_book():
+    interface.display_input("FILL")
         
-        title = interface.get_title()
-        if not title:
-            return
+    title = interface.get_title()
+    if not title:
+        return
             
-        book = get_book_api(title)
-    else:
-        interface.display_input("FILL")
-        book = interface.get_book()
-    
+    book = get_book_api(title)
     if book == "NOT API":
         return
     if not book:
