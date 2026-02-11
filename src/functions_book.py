@@ -29,15 +29,14 @@ def add_book(option):
         interface.display_input("ENTER")
         return
 
-    database.save_book(book)
+    database.save_book_csv(book)
     interface.display_screen("REGISTER")
     interface.display_input("ENTER")
 
 
 def view_books():
-    list_of_books = database.show_list_of_books()
     interface.display_screen("VIEW")
-    interface.show_list_books(list_of_books)
+    database.show_table_of_books()
 
 
 def verify_list_books():
@@ -48,8 +47,6 @@ def verify_list_books():
 
 
 def delete_book():
-    list_of_books = database.show_list_of_books()
-
     interface.display_screen("DELETE")
     interface.display_input("EDIT")
 
@@ -58,7 +55,7 @@ def delete_book():
         return
 
     interface.display_screen("CONFIRM_DELETE")
-    interface.show_book_by_list(choice, list_of_books)
+    interface.show_book_by_list(choice)
     interface.display_input("EXCLUDE")
 
     if not interface.checks_delete():
@@ -67,7 +64,7 @@ def delete_book():
         return
 
     book = database.remove_book(choice)
-
+    
     interface.display_screen("DELETE_BOOK")
     interface.show_book(book)
     interface.display_input("ENTER")
@@ -84,7 +81,7 @@ def edit_book():
         return
 
     interface.display_screen("EDIT_BOOK")
-    interface.show_book_by_list(choice, list_of_books)
+    interface.show_book_by_list(choice)
     interface.display_input("EDIT_BOOK")
 
     book = interface.get_field_book()

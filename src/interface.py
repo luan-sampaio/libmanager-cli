@@ -1,6 +1,7 @@
 import os
-import utils
 
+from database import show_list_of_books, get_actual_id
+import database
 
 SPACING = " " * 4
 SPACING_EQUAL_SIGN = " " * 4 + "=" * 40 + "\n"
@@ -27,10 +28,7 @@ screen = {
     "REGISTER": [" CADASTRO ", "Livro Cadastrado com sucesso!"],
     "CONFIRM_DELETE": [" EXCLUIR ", "ATENÇÃO: Esta ação não pode ser defesfeita!"],
     "VIEW": [
-        " CONSULTA ",
-        SPACING + f"{'ID':<4}{'TÍTULO':<19}{'AUTOR':<15}{'ANO'}",
-        SPACING_MINUS_SIGN,
-    ],
+        " CONSULTA "],
     "EDIT_BOOK": [" EDIÇÃO "],
     "EDIT_OK": ["", f"{'Livro editado com sucesso!':^48}"],
     "N_EDIT": ["", f"{'Não houve Edição no livro!':^48}"],
@@ -83,7 +81,7 @@ screen_input = {
         "\n",
         SPACING_MINUS_SIGN,
     ],
-    "ADD_BOOK": [       
+    "ADD_BOOK": [
         "\tEscolha uma opção:\n",
         "\t[1] Cadastro Automático",
         "\t[2] Cadastro Manual\n",
@@ -119,7 +117,7 @@ def get_id():
         return None
 
     choice = int(choice)
-    if not 0 <= choice <= utils.get_actual_id():
+    if not 0 <= choice <= database.get_actual_id():
         display_screen("INVALID")
         display_input("ENTER")
         return None
@@ -131,8 +129,9 @@ def get_title():
     title = input("\n" + SPACING + "Insira o título do livro: ")
     if not title:
         return None
-    
+
     return title
+
 
 def get_book():
     title = input("\n" + SPACING + "Insira o título do livro: ")
@@ -153,17 +152,8 @@ def get_book():
         else:
             break
 
-    book_id = utils.increase_id()
-    return {"title": title, "author": author, "date": date, "id": book_id}
-
-
-def show_list_books(list_books):
-    for book in list_books:
-        print(
-            SPACING
-            + f"{book.get('id'):<4}{book.get('title'):<19}{book.get('author'):<15}{book.get('date')}"
-        )
-    print("\n")
+    book_id = get_actual_id() + 1
+    return {"id": book_id, "title": title, "author": author, "date": date}
 
 
 def checks_delete():
@@ -171,7 +161,8 @@ def checks_delete():
     return checks == "DELETAR"
 
 
-def show_book_by_list(id_book, books):
+def show_book_by_list(id_book):
+    books = show_list_of_books()
     print(SPACING + "Título: " + f"{books[id_book].get('title')}")
     print(SPACING + "Autor: " + f"{books[id_book].get('author')}")
     print(SPACING + "Ano: " + f"{books[id_book].get('date')}\n\n")
@@ -179,15 +170,15 @@ def show_book_by_list(id_book, books):
 
 def get_field_book():
     book = {"title": None, "author": None, "date": None}
-    
+
     title = input("\n" + SPACING + "Digite o título: ")
     if title:
         book["title"] = title
-        
+
     author = input(SPACING + "Digite o autor: ")
     if author:
         book["author"] = author
-        
+
     date = input(SPACING + "Digite o ano: ")
     if date:
         book["date"] = date
