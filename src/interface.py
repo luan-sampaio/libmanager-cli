@@ -1,11 +1,11 @@
 import os
 
-from database import show_list_of_books, get_actual_id
+from database import show_list_of_books
 import database
 
 SPACING = " " * 4
-SPACING_EQUAL_SIGN =  "=" * 50 + "\n"
-SPACING_MINUS_SIGN =  "-" * 50 + "\n"
+SPACING_EQUAL_SIGN = "=" * 50 + "\n"
+SPACING_MINUS_SIGN = "-" * 50 + "\n"
 DISPLAY_HEADER = 0
 
 
@@ -27,8 +27,7 @@ screen = {
     "EMPTY": [" LISTA VAZIA ", "Não existe livros cadastrados no momento!"],
     "REGISTER": [" CADASTRO ", "Livro Cadastrado com sucesso!\n\n"],
     "CONFIRM_DELETE": [" EXCLUIR ", "ATENÇÃO: Esta ação não pode ser defesfeita!"],
-    "VIEW": [
-        " CONSULTA "],
+    "VIEW": [" CONSULTA "],
     "EDIT_BOOK": [" EDIÇÃO "],
     "EDIT_OK": ["", "Livro editado com sucesso!"],
     "N_EDIT": ["", "Não houve Edição no livro!'"],
@@ -78,11 +77,6 @@ screen_input = {
         f"{'Se não for alterar, pressione [ENTER]':^50}",
         "\n",
         SPACING_MINUS_SIGN,
-    ],
-    "ADD_BOOK": [
-        "Escolha uma opção:\n",
-        "[1] Cadastro Automático",
-        "[2] Cadastro Manual    \n",
     ],
 }
 

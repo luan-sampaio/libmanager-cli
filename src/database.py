@@ -5,6 +5,7 @@ from tabulate import tabulate
 
 id_book = -1
 
+
 def save_book_csv(book):
     with open("data/books.csv", "a", encoding="utf-8") as analysis, open(
         "data/books.csv", encoding="utf-8"
@@ -17,7 +18,7 @@ def save_book_csv(book):
 def show_table_of_books():
     with open("data/books.csv", encoding="utf-8") as read:
         reader = csv.DictReader(read)
-        print(tabulate(reader, headers="keys", tablefmt="github"), "\n\n")            
+        print(tabulate(reader, headers="keys", tablefmt="github"), "\n\n")
 
 
 def show_list_of_books():
@@ -26,9 +27,9 @@ def show_list_of_books():
         reader = csv.DictReader(read)
         for row in reader:
             list_of_books.append(row)
-            
+
     return list_of_books
-    
+
 
 def get_field_names():
     fieldnames = []
@@ -44,7 +45,7 @@ def remove_book(id_book):
     list_of_books = show_list_of_books()
     removed_book_list = []
     excluded_book = {}
-    
+
     for row in list_of_books:
         if int(row.get("id")) == id_book:
             excluded_book = row
@@ -52,22 +53,21 @@ def remove_book(id_book):
             row["id"] = count_id
             removed_book_list.append(row)
             count_id += 1
-            
-    
+
     fieldnames = get_field_names()
     with open("data/books.csv", "w") as write:
         writer = csv.DictWriter(write, fieldnames)
         writer.writeheader()
-        
+
         for row in removed_book_list:
             writer.writerow(row)
-        
+
     return excluded_book
 
 
 def edit_book(book, id_book):
     list_of_books = show_list_of_books()
-    
+
     with open("data/books.csv", "r") as read:
         reader = csv.DictReader(read)
         for row in reader:
@@ -80,12 +80,12 @@ def edit_book(book, id_book):
 
                 if book.get("date"):
                     list_of_books[id_book]["date"] = book.get("date")
-        
+
     fieldnames = get_field_names()
     with open("data/books.csv", "w") as write:
         writer = csv.DictWriter(write, fieldnames)
         writer.writeheader()
-        
+
         for book in list_of_books:
             writer.writerow(book)
 
@@ -93,7 +93,7 @@ def edit_book(book, id_book):
 def get_actual_id():
     id_book_local = -1
     books = []
-    
+
     try:
         with open("data/books.csv", encoding="utf-8") as read:
             reader = csv.DictReader(read)
