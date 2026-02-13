@@ -60,6 +60,7 @@ O foco deste projeto é lógica pura, utilizando bibliotecas nativas do Python:
     - requests: Utilizado para integração com a API da OpenLibrary.
     - csv: Utilizado para auxiliar nas operações de CRUD no CSV.
     - sys: Utilizado para encerrar o programa em cenários de Erro.
+    - tabulate: Utilizado para expor a tabela de livros cadastrados.
 
 ## 🧠 Aprendizados
 
