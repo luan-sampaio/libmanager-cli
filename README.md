@@ -18,11 +18,10 @@ Este projeto reflete uma etapa importante no meu aprendizado da linguagem Python
 
 ## ✨ Funcionalidades Atuais
 
-- [x] **Adicionar Livro:** Cadastro com título, autor e ano (ID gerado automaticamente).
+- [x] **Cadastro automático do livro:** Cadastro do livro por meio do título (autor, ano e id são preenchidos automaticamente).
 - [x] **Listar Livros:** Visualização de todos os itens cadastrados.
 - [x] **Editar Livro:** Atualização de campos específicos.
-- [x] **Excluir Livro:** Remoção de registros.
-- [x] **Cadastro automático do livro:** Implementação de consumo de API.
+- [x] **Excluir Livro:** Remoção do livro.
 - [x] **Persistência de Dados:** Implementação da persistência em CSV.
 
 
@@ -114,3 +113,4 @@ Sugestões e correções são muito bem-vindas, pois estou em fase de aprendizad
 ## 📄 Licença
 
 Este projeto está sob a licença MIT.
+
