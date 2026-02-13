@@ -94,13 +94,10 @@ def get_actual_id():
     id_book_local = -1
     books = []
 
-    try:
-        with open("data/books.csv", encoding="utf-8") as read:
-            reader = csv.DictReader(read)
-            for line in reader:
-                books.append(line)
-    except FileNotFoundError:
-        sys.exit("Use python src/main.py")
+    with open("data/books.csv", encoding="utf-8") as read:
+        reader = csv.DictReader(read)
+        for line in reader:
+            books.append(line)
 
     if books:
         return int(books[len(books) - 1]["id"])

@@ -1,8 +1,12 @@
 import interface
 import functions_book
+import sys
 
 
 def main():
+    if sys.argv[0] != "src/main.py":
+        sys.exit("Use python src/main.py")
+    
     while True:
         interface.display_screen("START")
         interface.display_input("START")
