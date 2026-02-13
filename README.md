@@ -50,7 +50,7 @@ libmanager/
 
 ## 🛠️ Tecnologias Utilizadas
 
-O foco deste projeto é lógica pura, utilizando bibliotecas nativas do Python:
+O foco deste projeto é lógica pura, utilizando bibliotecas nativas do Python e uma biblioteca externa:
 
 - Python 3
 
@@ -59,6 +59,8 @@ O foco deste projeto é lógica pura, utilizando bibliotecas nativas do Python:
     - requests: Utilizado para integração com a API da OpenLibrary.
     - csv: Utilizado para auxiliar nas operações de CRUD no CSV.
     - sys: Utilizado para encerrar o programa em cenários de Erro.
+
+- Biblioteca Externa:
     - tabulate: Utilizado para expor a tabela de livros cadastrados.
 
 ## 🧠 Aprendizados
@@ -113,4 +115,5 @@ Sugestões e correções são muito bem-vindas, pois estou em fase de aprendizad
 ## 📄 Licença
 
 Este projeto está sob a licença MIT.
+
 
